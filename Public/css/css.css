@@ -7,7 +7,9 @@
 #nav a{ display:block; text-align:center; color:#000; width:12%; padding:4px; font-size:1em; float:left; _display:inline; white-space:nowrap; min-width:64px;}
 #nav a:link{}
 #nav a:hover{ background:#333; color:#FFF}
-.search{ width:30%; float:right; margin-top:10px; text-align:right;}
+.search{ width:30%; float:right; margin-top:10px; text-align:right; min-width:300px}
+.search input{ height:24px; width:80%; border:1px solid #ccc; border-top:1px  solid #666; line-height:22px; float:left;}
+.search button{ height:26px;  width:19%; border:1px solid #222;  background:#333; color:#F1F1F1; float:left; cursor:pointer}
 .main{ margin:18px 10em;  height:auto; color:#555; overflow:hidden;}
 .left{ width:26%; float:left; _display:inline; min-height:500px; border-right:1px dotted #ccc;}
 .left .f-list{ padding-right:18px;}
@@ -17,6 +19,8 @@
 }
 .left .f-list dl{ margin:20px 0; margin-top:10px; line-height:2em; clear:both;}
 .left .f-list dt{ font-weight:bold; clear:both;}
+.left .f-list dt a{ color:#555}
+.left .f-list dt a:hover{ color:#000; text-decoration:underline}
 .left .f-list dd { padding-left:0px; line-height:24px; float:left; _display:inline; margin-right:4px;}
 .left .f-list dd a{ font-size:13px; color:#036}
 .left .f-list dd a:hover{ background:#333; color:#FFF; padding:4px 0}
@@ -27,3 +31,8 @@
 
 .right .f-view ul li{ min-width:280px; width:40%; float:left; _display:inline; padding:8px; text-align:center;}
 div.footer{ border-top:1px dotted #CCCCCC; line-height:30px; color:#666}
+.right .f-view ul li span.s-t a { color:#069; text-align:left}
+.right .f-view ul li span.down-bt a{ color:#666; background:#f3f3f3; font-size:1em; border:1px solid #ddd; padding:3px 10px}
+.right .f-view ul li span.down-bt a:hover{ color:#FFF; background:#060}
+.f-title{ margin:0 40px; margin-top:-0px;}
+.right .f-view ul li img{-webkit-filter:grayscale(1);}

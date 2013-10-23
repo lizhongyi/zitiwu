@@ -13,7 +13,7 @@ if (!defined('YIGECMS')) exit();
 return array(
     'DB_TYPE' => 'mysql',
     'DB_HOST' => 'localhost',
-    'DB_NAME' => 'shouge',
+    'DB_NAME' => 'ziti',
     'DB_USER' => 'root',
     'DB_PWD' => 'lizhongyi-009',
     'DB_PORT' => 3306,

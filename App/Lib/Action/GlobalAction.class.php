@@ -27,6 +27,17 @@ class GlobalAction extends Action
             $this->sysConfig = M('Config')->where('id=1')->find(); 
 			
         }
+		
+		
+		if(fileExit('./CmsData/cache.category.php')){
+            $this->globalCategory =require_once('./CmsData/cache.category.php');
+			//exit("到这一步了");
+        }else{
+            $this->globalCategory = M('Category')->order('display_order asc')->select(); 
+			
+        }
+		
+		
          //获取登陆session
 	     
 
@@ -57,28 +68,31 @@ class GlobalAction extends Action
         $this->assign('sysConfig', $this->sysConfig);
 		$this->assign('jingtai', $this->sysConfig['jingtai']);
 		
-	   // $this->assign('jingtai',$this->sysConfig['jingtai']);
-		//exit(print_r($this->sysConfig));
-		
-        /*if($sysConfig['web_status'] == 1){
-            $this->display('Public:stop');
-            exit();
-        }
-		*/
-        //取分类
-        //$this->globalCategory = getCache('Category');
-		//echo "<pre>";
-      // print_r($this->globalCategory);
-        //取导航
-      //  $this->globalMenu = getCache('Menu');
-		
-		// $this->assign('globalcat',getCategory($this->globalCategory,6,0));
-		
-       // $this->assign('globalMenu', $this->globalMenu);
+	    
 	     
-		 $shidian1=M('Article')->Field('id,title')->where('category_id=2')->order('id desc')->select();
+		
 
-
+         $dataList = getCategory($this->globalCategory, 14,0);
+         $listStr="<dl>";
+		 
+		 foreach($dataList as $k=>$v){
+			    
+				if($v['parent_id']==14){
+					 $listStr.="</dl>";
+				     $listStr.="<dl><dt><a href='#'>".$v['title']."</a></dt>";	
+					}else{
+						 $listStr.="<dd><a href='#'>".$v['title']."<span class='num'>(30)</span></a></dd>";
+						}
+			       
+				   
+			   
+			 
+			 }
+		  
+		 $listStr=substr($listStr,9);	 
+		 $this->assign('f_list',$listStr);
+		 
+        
 		
 		
 

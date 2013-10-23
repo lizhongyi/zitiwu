@@ -15,6 +15,8 @@ function _initialize()
             $this->sysConfig = M('Config')->where('id=1')->find(); 
 			
         }
+		
+		
 	
 
         //检测是否停止
