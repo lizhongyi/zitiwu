@@ -1,0 +1,43 @@
+
+<include file="Public:header" />
+
+<div class="banner07">
+</div>
+
+
+<div class="location02">
+<p>当前位置：<a href="/">首页</a> &gt; 关于我们</p>
+<ul style="margin-top:10px;">            
+
+<volist name="list" id="vo">         
+<li><a href="/About/index/info/{$vo.link_label}" <if condition="$_GET['info'] eq $vo['link_label']"> class="hover"</if> >{$vo.title}</a></li>
+</volist>
+<div class="clear"></div>
+</ul></div>
+
+
+
+
+<div class="content">
+<div class="content_left">
+<div class="about">
+{$detail['content']}
+</div>
+</div>
+<div class="content_right">
+<div id="content">
+<p><a href="#"><img src="/Public/img/online03.jpg" width="215" height="80" /></a></p>
+</div>
+<div class="contenttit">
+<include file="Public:right_list"/>
+</div></div>
+<!--底部-->
+<div class="clear"></div>
+<div class="line02"></div>
+<div class="clear"></div>
+
+
+<include file="Public:footer"/>
+
+
+

@@ -1,0 +1,55 @@
+
+<include file="Public:header" />
+
+
+<div class="banner08">
+</div>
+<!--位置-->
+<div class="location">
+<p>当前位置：<a href="/">首页</a> > 公司新闻</p>
+
+</div>
+<!--内容-->
+<div class="clear"></div>
+<!--列表-->
+
+
+<div class="view">
+<div class="view_left">
+<div class="view_detail">
+<h1>{$contentDetail.title}</h1>
+<h2>{$contentDetail.create_time|date='Y-m-d H:i',###}</h2>
+<p></p>
+
+
+{$contentDetail.content}
+
+
+<p></p>
+</div>
+<div class="clear"></div>
+<div class="view_detail02">
+<div class="viewdetleft">
+<div class="shangxia">
+   上一篇：{$shang_link}<br />
+   下一篇：{$xia_link}
+   </div>
+</div>
+
+</div>
+</div>
+<div class="content_right">
+<include file="Public:right_list"/>
+
+</div></div>
+</div>
+<!--底部-->
+<div class="clear"></div>
+<div class="line02"></div>
+<div class="clear"></div>
+
+
+<include file="Public:footer"/>
+
+
+

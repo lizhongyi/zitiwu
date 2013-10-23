@@ -1,0 +1,81 @@
+
+<include file="Public:header" />
+
+
+<div class="banner08">
+</div>
+<!--位置-->
+<div class="location">
+<p>当前位置：<a href="/">首页</a> > 新闻</p>
+
+</div>
+<!--内容-->
+<div class="clear"></div>
+<!--列表-->
+<div class="content">
+<div class="content_left">
+
+<div class="news">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<volist name="dataContentList" id="vo">
+<div class="news01">
+<div class="newstop">
+
+
+
+
+<div class="newstit01">
+<p><a href="/Article/detail/id/{$vo['id']}" target="_blank" title="{$vo['title']}">{$vo['title']}</a></p>
+</div>
+<div class="newstit02">
+<p>{$vo['create_time']|date='Y-m-d',###}</p>
+</div>
+</div>
+<div class="newsbot">
+<p><a href="/Article/detail/id/{$vo['id']}">{$vo['description']}</a></p>
+</div>
+</div>
+
+</volist>
+
+
+
+
+
+
+
+
+</div>
+
+<div class="clear"></div>
+<div class="page">
+{$pageContentBar}
+</div>
+
+</div>
+<div class="content_right">
+<include file="Public:right_list"/>
+</div></div>
+</div>
+<!--底部-->
+<div class="clear"></div>
+<div class="line02"></div>
+<div class="clear"></div>
+
+
+<include file="Public:footer"/>
+
+
+
