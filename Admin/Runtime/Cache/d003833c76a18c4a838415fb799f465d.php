@@ -5,7 +5,7 @@
 <meta charset="utf-8" />
 <title><?php echo ($sysConfig["site_name"]); ?> </title>
 <link id="mastercss" rel="stylesheet" href="__PUBLIC__/Admin/style.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="__PUBLIC__/Js/colorpicker/colorpicker.css" type="text/css">
+<link rel="stylesheet" href="__PUBLIC__/js/colorpicker/colorpicker.css" type="text/css">
 
 <script type="text/javascript">
 <!--
@@ -20,15 +20,15 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
   if (restore) selObj.selectedIndex=0;
 }
 </script>
-<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/Jquery/jquery.js"></script>
-<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/Jquery/jquery.validate.js"></script>
-<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/Jquery/cmxforms.js"></script>
-<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/script_common.js"></script>
-<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/colorpicker/colorpicker.js"/></script>
-<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/My97DatePicker/WdatePicker.js"/></script>
-     <script charset="utf-8" src="__PUBLIC__/Js/editor/kindeditor-min.js"></script>
-<script charset="utf-8" src="__PUBLIC__/Js/editor/lang/zh_CN.js"></script>
-<script charset="utf-8" src="__PUBLIC__/Js/editor/plugins.js"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/js/Jquery/jquery.js"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/js/Jquery/jquery.validate.js"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/js/Jquery/cmxforms.js"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/js/script_common.js"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/js/colorpicker/colorpicker.js"/></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/js/My97DatePicker/WdatePicker.js"/></script>
+     <script charset="utf-8" src="__PUBLIC__/js/editor/kindeditor-min.js"></script>
+<script charset="utf-8" src="__PUBLIC__/js/editor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__PUBLIC__/js/editor/plugins.js"></script>
 
 
 <script type="text/javascript">
@@ -157,10 +157,10 @@ $(document).ready(function(){
         <tr>
 		  <th colspan="2" >
 		  <textarea name="content" cols="50" rows="4" id="content"><?php echo ($vo["content"]); ?></textarea>
-<script src="__PUBLIC__/Js/FCKeditor/fckeditor.js"></script>
+<script src="__PUBLIC__/js/FCKeditor/fckeditor.js"></script>
 <script>
 	var oFCKeditor = new FCKeditor('content') ;
-	oFCKeditor.BasePath = '__PUBLIC__/Js/FCKeditor/';
+	oFCKeditor.BasePath = '__PUBLIC__/js/FCKeditor/';
 	oFCKeditor.Width = '100%';
 	oFCKeditor.Height = '400';
 	oFCKeditor.ToolbarSet = 'Default';

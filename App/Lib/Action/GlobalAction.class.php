@@ -223,8 +223,8 @@ class GlobalAction extends Action
 		}	
 	 
 		$this->assign('xinxi',$xinxi); 
-		$this->assign('dataContentList', $dataContentList);
-        $this->assign('pageContentBar', $pageContentBar);
+		$this->assign('datatList', $dataContentList);
+        $this->assign('pageBar', $pageContentBar);
         $this->display();
     }
 
@@ -241,7 +241,7 @@ class GlobalAction extends Action
         empty($contentDetail) && self::_message('errorUri', '记录不存在', U('Index/index'));
 		//更新查看次数
 		$viewCount && $this->dao->Where($condition2)->setInc($viewCount,1);
-        $this->assign('contentDetail', $contentDetail);
+        $this->assign('detail', $contentDetail);
         $this->display($contentDetail['template']);
     }
 
@@ -304,7 +304,7 @@ class GlobalAction extends Action
 		
 		$this->assign('shang_link', $shang_link);//上一篇
 		$this->assign('xia_link', $xia_link);//上一篇
-        $this->assign('contentDetail', $contentDetail);
+        $this->assign('detail', $contentDetail);
         $this->display($contentDetail['template']);
     }
 	

@@ -80,7 +80,7 @@ class DownloadAction extends GlobalAction
 
     public function detail(){
 
-        $titleId = intval($_GET['item']);
+        $titleId = intval($_GET['id']);
 
         $commentCount = M('Comment')->where("title_id={$titleId} and module='Download'")->count();
 
@@ -89,5 +89,24 @@ class DownloadAction extends GlobalAction
         parent::getJoinDetail(array('a.id='.$titleId, "id={$titleId}"), 'view_count', C('DB_PREFIX').'download a', C('DB_PREFIX').'category b on a.category_id=b.id','a.*, b.title as categoryName');
 
     }
+	
+	
+	public function addr(){
+		
+		    $id=$_POST['id'];
+			if(!$id) exit();
+			
+			$url=M('Download')->where('id='.$id)->getField('Download_url');
+		    if($url){
+				  
+				  
+				echo '<div id="down-box"><span class="tiqu"></span><iframe width="500" src="http://pan.baidu.com/share/init?shareid=1358217269&uk=286126782" oload="return false" height="200" frameborder="0"></iframe></div>';
+				
+				}else{
+					
+					 echo "资源出现问题";
+					
+					}
+		}
 
 }

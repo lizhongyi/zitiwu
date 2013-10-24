@@ -1,5 +1,5 @@
 ThinkPHP/*
-App/Runtime/*
-Public/editor/*
+App/Runtime
+Public/js/editor/*
 config.inc.php
-Admin/Runtime/*
+Admin/Runtime
