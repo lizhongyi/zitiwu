@@ -178,411 +178,141 @@ $(document).ready(function(){
 		</div>
 
 
-		<div id="content">
-
-
-<script>
-
-
-$(document).ready(function(e) {
-
-
-    
-
-
-	$('.dhl').click(function(e) {
-
-
-        
-
-
-		//alert('nihao');
-
-
-		
-
-
-		var did;
-
-
-		var hh=$(this);
-
-
-		var did = hh.attr('did');
-
-
-		var cid = hh.attr('cid');
-
-
-		 $.ajax({   
-
-
-
-
-
-     type:"GET",   
-
-
-
-
-
- url:"<?php echo U('Category/domenu');?>",
-
-
-
-
-
- data:{did:did,cid:cid},   
-
-
-
-
-
- beforeSend:function(){
-
-
-
-
-
- hh.attr('src','/Public/Admin/Admin/load.gif');
-
-
-
-
-
- },                
-
-
-
-
-
- success:function(data){
-
-
-	 
-
-
-	 if(data==1){
-
-
-		
-
-
-			if(hh.attr('cid')==0){
-
-
-		hh.attr('src','/Public/Admin/delete.gif');
-
-
-		hh.attr('cid',1);
-
-
-		
-
-
-			}
-
-
-			
-
-
-			else
-
-
-			{
-
-
-				
-
-
-			 hh.attr('src','/Public/Admin/apply.gif');
-
-
-			 hh.attr('cid',0);
-
-
-			}
-
-
-			
-
-
-			
-
-
-		 }
-
-
-	 
-
-
-	else{
-
-
-		
-
-
-		
-
-
-		
-
-
-		}
-
-
-	 }
-
-
-	 
-
-
-	 
-
-
-		 
-
-
-		
-
-
-		 
-
-
-
-
-
- 
-
-
-
-
-
-      });
-
-
-		
-
-
-		
-
-
-    });
-
-
-	
-
-
-});
-
-
-</script>
-
-
-<style>
-
-
-.daohang img{ width:20px; height:20px;}
-
-
-</style>
-
-
-<div class="mainarea">
-
-
-  <div class="maininner">
-
-
-<div class="block style4">
-
-
-		
-
-
-		<table cellspacing="3" cellpadding="3">
-
-
-		<tr>
-
-
-		  <th style="width:50px; text-align:center"><a href="http://www.YIGECMS.cn/manual.php?app=shuguangCorp&module=<?php echo ($moduleName); ?>" target="_blank"><img src="__PUBLIC__/Admin/help_1.gif" alt="" align="absmiddle" /><br />
-
-
-帮助</a></th>
-
-
-		<td>删除分类会同时删除此分类下所有的子类<br />
-
-
-		  受保护的类别为其它模块可能在使用中需要用到，尽量不要去删除，否则会导致错误</td>
-
-
-		  </tr>
-
-
-		</table>
-
-
-	</div>
-
-
-
-
-
-    
-
-
-      <form method="post" action="<?php echo u("Category/doCommand");?>">
-
-
-        <div class="body_content">
-
-
-          <div class="top_action"><a href="__URL__">浏览分类</a> | <a href="<?php echo U("Category/insert");?>">录入分类</a></div>
-
-
-          <table cellspacing="0" cellpadding="0" id="maintable" class="formtable">
-
-
-            <tr>
-
-
-              <th style="width:60px">&nbsp;</th>
-
-
-              <th>名称</th>
-
-
-              <th align="center">导航栏</th>
-
-
-                <th>&nbsp;</th>
-
-
-              <th style="width:8%">排序</th>
-
-
-              <th style="width:15%">录入时间</th>
-
-
-              <th style="width:5%">操作</th>
-
-
-            </tr>
-
-
-            <?php if(isset($dataList)): if(is_array($dataList)): $i = 0; $__LIST__ = $dataList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr style="<?php echo (bgstyle($vo["parent_id"],0,'background:#F5FFF7; font-weight:bold;vertical-align:middle')); ?>">
-
-
-                <td><input type="checkbox" name="id[]" value="<?php echo ($vo["id"]); ?>">
-
-
-                  <?php echo ($vo["id"]); ?>
-
-
-                  <input name="shuguangUpdateId[]" type="hidden" id="shuguangUpdateId[]" value="<?php echo ($vo["id"]); ?>" /></td>
-
-
-                
-
-
-                <td><?php echo ($vo["str_repeat"]); echo ($vo["title"]); ?> <?php echo (statusicon($vo["status"],1,$frontUrl,'hidden.gif','隐藏')); ?> <?php echo (statusicon($vo["protected"],1,$frontUrl,'lock.gif','保护中')); ?> <a href="<?php echo U('Category/insert',array('parentId'=>$vo['id'],'module'=>$vo['module']));?>"><img src="__PUBLIC__/Admin/add.gif" align="absmiddle" /></a></td><td align="left" valign="middle" class="daohang"><?php if( $vo["menu"] == 1 ): ?><img src="/Public/Admin/apply.gif" width="16" height="16" class="dhl" cid="0" did="<?php echo ($vo['id']); ?>" 
-
-
-               />
-
-
-                  <?php else: ?>
-
-
-                    <img src="/Public/Admin/delete.gif" width="20" height="20" class="dhl" cid="1" did="<?php echo ($vo['id']); ?>"
-
-
-                     /><?php endif; ?></td>
-
-
-                <td valign="middle">&nbsp;</td>
-
-
-                <td><input name="display_order[]" type="text" id="display_order[]" value="<?php echo ($vo["display_order"]); ?>" class="input-style"/></td> 
-
-
-                <td><?php echo (date("Y-m-d",$vo["create_time"])); ?></td>
-
-
-                <td><a href="<?php echo U('Category/modify',array('id'=>$vo['id']));?>"><img src="__PUBLIC__/Admin/modify22px.gif" alt="编辑" align="absmiddle" /></a></td>
-
-
-              </tr><?php endforeach; endif; else: echo "" ;endif; ?> 
-
-
-            <?php else: ?>
-
-
-            <td colspan="5" style="color:#F00; font-weight:bold">暂无数据</td><?php endif; ?>
-
-
-          </table>
-
-
-        </div>
-
-
-        <div class="foot_action">
-
-
-          <div class="bat">
-
-
-            <input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'id')">
-
-
-            全选
-
-
-            <select name="operate" id="operate">
-
-
-              <option value="update" selected="selected">更新</option>
-
-
-              <option value="setStatus">显示</option>
-
-
-              <option value="unSetStatus">隐藏</option>
-
-
-              <option value="delete">删除</option>
-
-
-            </select>
-
-
-            <input type="submit" name="submit" value="提交操作" class="confirmSubmit submit">
-
-
-          </div>
-
-
-          <div class="pages"><?php echo ($pageBar); ?></div>
-
-
-        </div>
-
-
-      </form>
-
-
-     
-
-
-  </div>
-
-
-</div>
-
-
+		<div id="content">
+<script>
+$(document).ready(function(e) {
+    
+	$('.dhl').click(function(e) {
+        
+		//alert('nihao');
+		
+		var did;
+		var hh=$(this);
+		var did = hh.attr('did');
+		var cid = hh.attr('cid');
+		 $.ajax({   
+
+     type:"GET",   
+
+ url:"<?php echo U('Category/domenu');?>",
+
+ data:{did:did,cid:cid},   
+
+ beforeSend:function(){
+
+ hh.attr('src','/Public/Admin/Admin/load.gif');
+
+ },                
+
+ success:function(data){
+	 
+	 if(data==1){
+		
+			if(hh.attr('cid')==0){
+		hh.attr('src','/Public/Admin/delete.gif');
+		hh.attr('cid',1);
+		
+			}
+			
+			else
+			{
+				
+			 hh.attr('src','/Public/Admin/apply.gif');
+			 hh.attr('cid',0);
+			}
+			
+			
+		 }
+	 
+	else{
+		
+		
+		
+		}
+	 }
+	 
+	 
+		 
+		
+		 
+
+ 
+
+      });
+		
+		
+    });
+	
+});
+</script>
+<style>
+.daohang img{ width:20px; height:20px;}
+</style>
+<div class="mainarea">
+  <div class="maininner">
+<div class="block style4">
+		
+		<table cellspacing="3" cellpadding="3">
+		<tr>
+		  <th style="width:50px; text-align:center"><a href="http://www.YIGECMS.cn/manual.php?app=shuguangCorp&module=<?php echo ($moduleName); ?>" target="_blank"><img src="__PUBLIC__/Admin/help_1.gif" alt="" align="absmiddle" /><br />
+帮助</a></th>
+		<td>删除分类会同时删除此分类下所有的子类<br />
+		  受保护的类别为其它模块可能在使用中需要用到，尽量不要去删除，否则会导致错误</td>
+		  </tr>
+		</table>
+	</div>
+
+    
+      <form method="post" action="<?php echo u("Category/doCommand");?>">
+        <div class="body_content">
+          <div class="top_action"><a href="__URL__">浏览分类</a> | <a href="<?php echo U("Category/insert");?>">录入分类</a></div>
+          <table cellspacing="0" cellpadding="0" id="maintable" class="formtable">
+            <tr>
+              <th style="width:60px">&nbsp;</th>
+              <th>名称</th>
+              <th align="center">导航栏</th>
+                <th>&nbsp;</th>
+              <th style="width:8%">排序</th>
+              <th style="width:15%">录入时间</th>
+              <th style="width:5%">操作</th>
+            </tr>
+            <?php if(isset($dataList)): if(is_array($dataList)): $i = 0; $__LIST__ = $dataList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr style="<?php echo (bgstyle($vo["parent_id"],0,'background:#F5FFF7; font-weight:bold;vertical-align:middle')); ?>">
+                <td><input type="checkbox" name="id[]" value="<?php echo ($vo["id"]); ?>">
+                  <?php echo ($vo["id"]); ?>
+                  <input name="shuguangUpdateId[]" type="hidden" id="shuguangUpdateId[]" value="<?php echo ($vo["id"]); ?>" /></td>
+                
+                <td><?php echo ($vo["str_repeat"]); echo ($vo["title"]); ?> <?php echo (statusicon($vo["status"],1,$frontUrl,'hidden.gif','隐藏')); ?> <?php echo (statusicon($vo["protected"],1,$frontUrl,'lock.gif','保护中')); ?> <a href="<?php echo U('Category/insert',array('parentId'=>$vo['id'],'module'=>$vo['module']));?>"><img src="__PUBLIC__/Admin/add.gif" align="absmiddle" /></a></td><td align="left" valign="middle" class="daohang"><?php if( $vo["menu"] == 1 ): ?><img src="/Public/Admin/apply.gif" width="16" height="16" class="dhl" cid="0" did="<?php echo ($vo['id']); ?>" 
+               />
+                  <?php else: ?>
+                    <img src="/Public/Admin/delete.gif" width="20" height="20" class="dhl" cid="1" did="<?php echo ($vo['id']); ?>"
+                     /><?php endif; ?></td>
+                <td valign="middle">&nbsp;</td>
+                <td><input name="display_order[]" type="text" id="display_order[]" value="<?php echo ($vo["display_order"]); ?>" class="input-style"/></td> 
+                <td><?php echo (date("Y-m-d",$vo["create_time"])); ?></td>
+                <td><a href="<?php echo U('Category/modify',array('id'=>$vo['id']));?>"><img src="__PUBLIC__/Admin/modify22px.gif" alt="编辑" align="absmiddle" /></a></td>
+              </tr><?php endforeach; endif; else: echo "" ;endif; ?> 
+            <?php else: ?>
+            <td colspan="5" style="color:#F00; font-weight:bold">暂无数据</td><?php endif; ?>
+          </table>
+        </div>
+        <div class="foot_action">
+          <div class="bat">
+            <input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'id')">
+            全选
+            <select name="operate" id="operate">
+              <option value="update" selected="selected">更新</option>
+              <option value="setStatus">显示</option>
+              <option value="unSetStatus">隐藏</option>
+              <option value="delete">删除</option>
+            </select>
+            <input type="submit" name="submit" value="提交操作" class="confirmSubmit submit">
+          </div>
+          <div class="pages"><?php echo ($pageBar); ?></div>
+        </div>
+      </form>
+     
+  </div>
+</div>
 <div class="side"> 	<div class="block style1">
 
 		<h2><div class="set">常规设置</div></h2>
@@ -659,52 +389,20 @@ $(document).ready(function(e) {
 
 	</div>
 
- </div>
-
-
-</div>
-
-
-<div id="footer">
-
-
-	<p> Copyright 2008-2010 <a href="#" target="_blank"></a>
-
-
-</p>
-
-
-</div>
-
-
-</div>
-
-
-<script type="text/javascript">
-
-
-$(function(){ 
-
-
-    $(".<?php echo ($moduleName); ?>").addClass("active");
-
-
-    $(".confirmSubmit").click(function() {
-
-
-        return confirm('本操作不可恢复，确定继续？');
-
-
-    });
-
-
-}); 
-
-
-</script>
-
-
-</body>
-
-
+ </div>
+</div>
+<div id="footer">
+	<p> Copyright 2008-2010 <a href="#" target="_blank"></a>
+</p>
+</div>
+</div>
+<script type="text/javascript">
+$(function(){ 
+    $(".<?php echo ($moduleName); ?>").addClass("active");
+    $(".confirmSubmit").click(function() {
+        return confirm('本操作不可恢复，确定继续？');
+    });
+}); 
+</script>
+</body>
 </html>

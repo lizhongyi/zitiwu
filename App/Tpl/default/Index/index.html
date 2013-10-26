@@ -14,22 +14,35 @@
 
 <div class="f-view">
 
-<ul>
+<ul class="search_ul">
 
-<?php for ($i=1;$i<12;$i++) { ?>
-<li>
+<present name="dataList">
+<volist name='dataList' id="vo">
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <li>
 <div class="f-img">
-<a href="#"><img src="FT/{$i}.gif"/></a>
+<a href="/Download/detail/id/{$vo.id}"><img src="/Uploads/{$vo['attach_image']}"/></a>
 </div>
 
 <div  class="f-title">
-<span class="down-bt fr"><a href="#">下载</a></span><span class="s-t fl"><a href="#">这个是字体{$i}的名字</a></span>
+<span class="down-bt fr"><a href="/Download/detail/id/{$vo.id}">下载</a></span><span class="s-t fl"><a href="/Download/detail/id/{$vo.id}">{$vo.title}</a></span>
 <div class="clear"></div>
 </div>
 </li>
 
-<?php } ?>
+
+</volist>
+<else/>
+<li>没有找到相关资源，可以尝试使用Ctrl+F浏览器搜索分类哦</li>
+</present>
 </ul>
+
 
 </div>
 

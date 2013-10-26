@@ -61,6 +61,10 @@ class DownloadAction extends GlobalAction
         $this->assign($data);
 
         $this->dao = D('Download');
+		
+		 require_once './libs/BaiduPCS.class.php';
+               //请根据实际情况更新$access_token与$appName参数
+         
 
     }
 
@@ -373,6 +377,116 @@ class DownloadAction extends GlobalAction
      *
 
      */
+	 
+	 
+	 
+	 
+	 //上传百度网盘资源
+	 
+	 public function up_pan(){
+		 
+		    
+			    $access_token = 	C('MY_TOKEN');
+               //应用目录名
+               $appName = 'zitiwu01';
+                //应用根目录
+				
+				//字体分类文件夹
+				
+				$catePath=trim($_POST['cate_path']);
+                $root_dir = '/apps' . '/' . $appName . '/'.$catePath.'/';
+
+             //上传文件的目标保存路径，此处表示保存到应用根目录下
+              $targetPath = $root_dir;
+             //要上传的本地文件路径
+			 
+			 
+			 
+			     import('ORG.Net.UploadFile');
+                  $upload = new UploadFile();// 实例化上传类
+                  $upload->maxSize  = 31045728 ;// 设置附件上传大小
+                  $upload->allowExts  = array('rar', 'zip', 'tff', '7z');// 设置附件上传类型
+				  //$upload->saveRule=0;
+				  //$upload->saveRule=uniqid;//上传文件的文件名保存规则
+                  $upload->uploadReplace=0;
+                  $upload->savePath =  './fontTemp/';// 设置附件上传目录
+                 if(!$upload->upload()) {// 上传错误提示错误信息
+				 
+				 $rr=$upload->getErrorMsg();
+				  print_r($rr);
+				 
+                
+				  
+				  
+				  
+				  
+                 }else{// 上传成功 获取上传文件信息
+                 $info =  $upload->getUploadFileInfo();
+                
+                 }
+			 
+			 
+			 
+			 
+			 
+			 
+			
+             $file = $info[0]['savepath'].$info[0]['savename'];
+             //文件名称
+              $fileName = basename($file);
+              //新文件名，为空表示使用原有文件名
+             $newFileName = '';
+
+             $pcs = new BaiduPCS($access_token);
+
+             if (!file_exists($file)) {
+	          			  
+			   
+			     $error=array('ed'=>1,'info'=>'文件不存在请检查是否正确');
+				 $error=json_encode($error);
+			     echo '<script>';   
+			
+	             echo 'parent.callback('.$error.')';
+	    
+		         echo '</script>';
+				 echo 
+				 exit();
+				 
+            } else {
+	           $fileSize = filesize($file);
+	           $handle = fopen($file, 'rb');
+	          $fileContent = fread($handle, $fileSize);
+
+	          $result = $pcs->upload($fileContent, $targetPath, $fileName, $newFileName);
+	          fclose($handle);
+			  
+			  //删除临时文件
+			  unlink($file);
+			  
+			  //错误类型中文数组
+			  
+			   $errArray=array('33061'=>'文件已存在');
+			  
+			  //判断错误类型
+			  $json=json_decode($result);
+			  print_r($json);
+			  
+	     echo '<script>';   
+			
+	     echo 'parent.callback('.$result.')';
+	    
+		 echo '</script>';
+		 
+		 echo $result;
+}
+	 
+		 
+		 
+		 }
+	 
+	 
+	 
+	 
 
     public function doCommand()
 
@@ -423,6 +537,77 @@ class DownloadAction extends GlobalAction
 
 
     }
+    
+	
+	public function sr_ku(){
+		
+		     $access_token = 	C('MY_TOKEN');
+		      $k=$_GET['keyword'];
+			  
+		     	$appName = 'zitiwu01';
+      //应用根目录
+     $root_dir = '/apps' . '/' . $appName . '/';
 
+       //搜索关键字
+      $wd = $_GET['keyword'];
+//搜索的目录路径，此处为搜索应用根目录
+$path = $root_dir;
+//是否递归搜索
+$re = 1;
+
+$pcs = new BaiduPCS($access_token);
+$result = $pcs->search($path, $wd, $re);
+  
+  $getList=json_decode($result);
+   
+   $list=(array)$getList->list;
+  
+   foreach($list as $k=>$v){
+	      
+		  $list[$k]=(array)($list[$k]);
+	   
+	   }
+   //如果资源没有的花那么就搜索分类
+	   
+	foreach($list as $k=>$v){
+	      
+		  $list[$k]['title']=$this->imp($v['path']);
+	   
+	   }
+	   
+	   
+   $this->assign('dataList',$list);
+
+   $this->display();
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+
+  
+     public function imp($str){
+		 
+		      if(!$str) return false;
+			  $arr=explode('/',$str);
+			  if(substr($title=$arr[4],-2)=='7z'){
+				 $title= substr($title=$arr[4],0,-3); 
+			  }else{
+			 $title= substr($title=$arr[4],0,-4);
+			  }
+				return $title;  
+		 
+		 }
+
+	
+	
 }
 

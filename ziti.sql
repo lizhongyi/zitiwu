@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2013 年 10 月 23 日 16:24
+-- 生成日期: 2013 年 10 月 26 日 16:44
 -- 服务器版本: 5.1.50
 -- PHP 版本: 5.2.14
 
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `yge_admin_log` (
   `ip` char(15) NOT NULL DEFAULT '127.0.0.1' COMMENT 'IP',
   `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '录入时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='管理员操作日志' AUTO_INCREMENT=4754 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='管理员操作日志' AUTO_INCREMENT=4795 ;
 
 --
 -- 转存表中的数据 `yge_admin_log`
@@ -1062,7 +1062,48 @@ INSERT INTO `yge_admin_log` (`id`, `user_id`, `username`, `action`, `ip`, `creat
 (4750, 1, 'lizhongyi', '/admin.php/Category/doCommand.html (批量更新: 122,124,123,103,104,35,36,32,34,33,14,177,182,181,180,179,178,129,200,199,198,197,196,195,194,193,192,191,190,189,188,187,186,185,184,183,126,173,172,171,170,169,168,167,17,176,175,174,166,165,164,163,162,161,160,159,158,157,156,155,154,15,201,128,127,125,153,152,151,150,149,148,147,146,145,144,143,142,141,140,139,138,137,136,135,134,133,132,131,130,1,121,98,2 影响 94 条记录)', '127.0.0.1', 1382545202),
 (4751, 1, 'lizhongyi', '/admin.php/Category', '127.0.0.1', 1382545204),
 (4752, 1, 'lizhongyi', '/admin.php/Category/doCommand.html (批量更新: 122,124,123,103,104,35,36,32,34,33,14,201,128,177,182,181,180,179,178,127,129,200,199,198,197,196,195,194,193,192,191,190,189,188,187,186,185,184,183,126,173,172,171,170,169,168,167,17,176,175,174,166,165,164,163,162,161,160,159,158,157,156,155,154,15,125,130,153,152,151,150,149,148,147,146,145,144,143,142,141,140,139,138,137,136,135,134,133,132,131,1,121,98,2 影响 94 条记录)', '127.0.0.1', 1382545332),
-(4753, 1, 'lizhongyi', '/admin.php/Category', '127.0.0.1', 1382545333);
+(4753, 1, 'lizhongyi', '/admin.php/Category', '127.0.0.1', 1382545333),
+(4754, 1, 'lizhongyi', '/admin.php', '127.0.0.1', 1382718255),
+(4755, 1, 'lizhongyi', '/admin.php/Download/index.html', '127.0.0.1', 1382718260),
+(4756, 1, 'lizhongyi', '/admin.php/Download/index.html', '127.0.0.1', 1382719372),
+(4757, 1, 'lizhongyi', '/admin.php', '127.0.0.1', 1382751262),
+(4758, 1, 'lizhongyi', '/admin.php/Download/index.html', '127.0.0.1', 1382751266),
+(4759, 1, 'lizhongyi', '/admin.php', '127.0.0.1', 1382773349),
+(4760, 1, 'lizhongyi', '/admin.php/Category/index.html', '127.0.0.1', 1382773357),
+(4761, 1, 'lizhongyi', '/admin.php/Download/index.html', '127.0.0.1', 1382773507),
+(4762, 1, 'lizhongyi', '/admin.php/Product/index.html', '127.0.0.1', 1382778177),
+(4763, 1, 'lizhongyi', '/admin.php/Download/index.html', '127.0.0.1', 1382778441),
+(4764, 1, 'lizhongyi', '/admin.php', '127.0.0.1', 1382778632),
+(4765, 1, 'lizhongyi', '/admin.php/Page/index.html', '127.0.0.1', 1382778636),
+(4766, 1, 'lizhongyi', '/admin.php/Page/index.html', '127.0.0.1', 1382778798),
+(4767, 1, 'lizhongyi', '/admin.php/Page/index.html', '127.0.0.1', 1382778888),
+(4768, 1, 'lizhongyi', '/admin.php/Download/index.html', '127.0.0.1', 1382778894),
+(4769, 1, 'lizhongyi', '/admin.php', '127.0.0.1', 1382791579),
+(4770, 1, 'lizhongyi', '/admin.php/Product/index.html', '127.0.0.1', 1382791588),
+(4771, 1, 'lizhongyi', '/admin.php/Article/index.html', '127.0.0.1', 1382791592),
+(4772, 1, 'lizhongyi', '/admin.php/Download/index.html', '127.0.0.1', 1382791594),
+(4773, 1, 'lizhongyi', '/admin.php/Download/doInsert.html (录入:6)', '127.0.0.1', 1382792241),
+(4774, 1, 'lizhongyi', '/admin.php/Download', '127.0.0.1', 1382792243),
+(4775, 1, 'lizhongyi', '/admin.php/Download/index.html', '127.0.0.1', 1382793189),
+(4776, 1, 'lizhongyi', '/admin.php/Category/index.html', '127.0.0.1', 1382793330),
+(4777, 1, 'lizhongyi', '/admin.php/Download/index.html', '127.0.0.1', 1382793333),
+(4778, 1, 'lizhongyi', '/admin.php/Download/doCommand.html (删除: 6)', '127.0.0.1', 1382793341),
+(4779, 1, 'lizhongyi', '/admin.php?m=Download', '127.0.0.1', 1382793343),
+(4780, 1, 'lizhongyi', '/admin.php/Download/index.html', '127.0.0.1', 1382793635),
+(4781, 1, 'lizhongyi', '/admin.php/Download/doInsert.html (录入:7)', '127.0.0.1', 1382793718),
+(4782, 1, 'lizhongyi', '/admin.php/Download', '127.0.0.1', 1382793720),
+(4783, 1, 'lizhongyi', '/admin.php/Download/index.html', '127.0.0.1', 1382794351),
+(4784, 1, 'lizhongyi', '/admin.php/Download/doModify.html (编辑:7)', '127.0.0.1', 1382794777),
+(4785, 1, 'lizhongyi', '/admin.php/Download', '127.0.0.1', 1382794778),
+(4786, 1, 'lizhongyi', '/admin.php/Download', '127.0.0.1', 1382794808),
+(4787, 1, 'lizhongyi', '/admin.php/Download/doModify.html (编辑:7)', '127.0.0.1', 1382794919),
+(4788, 1, 'lizhongyi', '/admin.php/Download', '127.0.0.1', 1382794921),
+(4789, 1, 'lizhongyi', '/admin.php/Category/index.html', '127.0.0.1', 1382794939),
+(4790, 1, 'lizhongyi', '/admin.php/Download/index.html', '127.0.0.1', 1382805499),
+(4791, 1, 'lizhongyi', '/admin.php/Download/doInsert.html (录入:8)', '127.0.0.1', 1382805565),
+(4792, 1, 'lizhongyi', '/admin.php/Download', '127.0.0.1', 1382805566),
+(4793, 1, 'lizhongyi', '/admin.php/Download/doModify.html (编辑:8)', '127.0.0.1', 1382805765),
+(4794, 1, 'lizhongyi', '/admin.php/Download', '127.0.0.1', 1382805766);
 
 -- --------------------------------------------------------
 
@@ -1371,6 +1412,7 @@ INSERT INTO `yge_config` (`id`, `lang`, `site_name`, `company_name`, `site_url`,
 CREATE TABLE IF NOT EXISTS `yge_download` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '用户',
+  `fs_id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL DEFAULT '' COMMENT '软件名称',
   `title_style` varchar(255) NOT NULL DEFAULT '' COMMENT '样式',
   `title_style_serialize` varchar(255) NOT NULL COMMENT '样式序列化',
@@ -1378,7 +1420,7 @@ CREATE TABLE IF NOT EXISTS `yge_download` (
   `keyword` varchar(255) NOT NULL DEFAULT '' COMMENT '关键字',
   `run_system` varchar(255) NOT NULL DEFAULT 'windows' COMMENT '运行系统',
   `extension` varchar(10) NOT NULL DEFAULT 'zip' COMMENT '扩展名',
-  `file_size` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '大小',
+  `file_size` varchar(10) NOT NULL DEFAULT '0' COMMENT '大小',
   `file_size_unit` char(10) NOT NULL DEFAULT 'KB' COMMENT '大小单位',
   `download_url` text NOT NULL COMMENT '下载地址1',
   `link_url` varchar(100) NOT NULL COMMENT '外链',
@@ -1398,18 +1440,15 @@ CREATE TABLE IF NOT EXISTS `yge_download` (
   `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '发布时间',
   `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='下载' AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC COMMENT='下载' AUTO_INCREMENT=9 ;
 
 --
 -- 转存表中的数据 `yge_download`
 --
 
-INSERT INTO `yge_download` (`id`, `user_id`, `title`, `title_style`, `title_style_serialize`, `category_id`, `keyword`, `run_system`, `extension`, `file_size`, `file_size_unit`, `download_url`, `link_url`, `description`, `content`, `tags`, `template`, `file_attach`, `attach`, `attach_image`, `attach_thumb`, `view_count`, `istop`, `recommend`, `status`, `display_order`, `create_time`, `update_time`) VALUES
-(1, 1, '泄露个人信息 铁道部坦承是个问题 ', '', '', 15, '', '', 'zip', 0, 'KB', 'test', '', '泄露个人信息 铁道部坦承是个问题 ', '<p style="text-indent: 2em">环球网记者范凌志报道，台湾前&ldquo;副总统&rdquo;吕秀莲本周访问美国华府。她在与美方人士会面时称，美国虽然持续对台军售，但不能忽略台湾&ldquo;自我防卫&rdquo;的需求，应该&ldquo;尽快考虑出售F16C/D型战机&rdquo;。</p>\r\n<p style="text-indent: 2em">据台湾&ldquo;中央社&rdquo;24日消息，吕秀莲此行已与美国国务院、美国在台协会（AIT）官员见面，并拜会了美国多位涉台机构官员。</p>\r\n<p style="text-indent: 2em">吕秀莲称，对于美国政府决定新一波的对台军售，台湾当然&ldquo;很感谢&rdquo;，但&ldquo;遗憾的是F16C/D型战机仍未纳入&rdquo;。美方亲台官员与议员还说，洛克希德马丁公司（LockheedMartin）万一关闭F16生产线，台湾要取得F-35战机将&ldquo;更为困难&rdquo;。</p>\r\n<p style="text-indent: 2em">同时，&ldquo;台湾连线&rdquo;共同主席、共和党籍众议员狄亚士巴拉特（Lincoln Diaz-Balart）等人承诺&ldquo;将发动国会连署&rdquo;要求行政部门尽快决定F16C/D的军售案。</p>\r\n<p style="text-indent: 2em">此前，美联社及路透两大国际通讯社在22日都在台北发布新闻，指根据美国政府最新公布的报告指出，台湾在与大陆进行战斗时，&ldquo;可供作战的战机数量将不敷使用，也凸显台湾空防战力已有&lsquo;不堪一击&rsquo;的危机&rdquo;。</p>\r\n<p style="text-indent: 2em">路透认为，这份报告可能促成美国在肯定触怒北京的情况下，对台提供新的军售，以确保台海情势稳定；美联社则点出，美国防部强烈怀疑：台湾是否拥有足够</p>', '', '', '', 0, '', '', 1, 0, 0, 0, 0, 1266940800, 0),
-(2, 1, '广西公务员考试涉嫌试题泄露 已立案调查 ', 'color:#800080;font-weight:bold', 'a:2:{s:5:"color";s:7:"#800080";s:4:"bold";s:4:"bold";}', 15, '', '', 'zip', 0, 'KB', 'http://test.com\r\nhttp://www.sss.com', 'http://www.sss.com', '', '<p style="text-indent: 2em">吕秀莲称，对于美国政府决定新一波的对台军售，台湾当然&ldquo;很感谢&rdquo;，但&ldquo;遗憾的是F16C/D型战机仍未纳入&rdquo;。美方亲台官员与议员还说，洛克希德马丁公司（LockheedMartin）万一关闭F16生产线，台湾要取得F-35战机将&ldquo;更为困难&rdquo;。</p>\r\n<p style="text-indent: 2em">同时，&ldquo;台湾连线&rdquo;共同主席、共和党籍众议员狄亚士巴拉特（Lincoln Diaz-Balart）等人承诺&ldquo;将发动国会连署&rdquo;要求行政部门尽快决定F16C/D的军售案。</p>\r\n<p style="text-indent: 2em">此前，美联社及路透两大国际通讯社在22日都在台北发布新闻，指根据美国政府最新公布的报告指出，台湾在与大陆进行战斗时，&ldquo;可供作战的战机数量将不敷使用，也凸显台湾空防战力已有&lsquo;不堪一击&rsquo;的危机&rdquo;。</p>\r\n<p style="text-indent: 2em">路透认为，这份报告可能促成美国在肯定触怒北京的情况下，对台提供新的军售，以确保台海情势稳定；美联社则点出，美国防部强烈怀疑：台湾是否拥有足够抵御大陆攻击的能力。</p>\r\n<p style="text-indent: 2em">台空军对此表示，美方正在评估台湾采购F-16C/D的可行性，目前台方尚未取得这份报告，因此不便对媒体报道评论。而台当局高层官员则分析称，美国官方刻意将这份报告提供给国际媒体并选在台北发出，是向两岸发出极为明显的政治讯息，可能是为宣布出售F-16C/D给台湾进行&ldquo;暖身铺路&rdquo;，台湾静观这项发展，并&ldquo;将会做好准备&rdquo;。</p>', '了修正,55,aaaxxx', '', '', 0, '', '', 0, 0, 0, 0, 0, 1266940800, 0),
-(3, 1, 'fsg', '', '', 17, '', '', 'zip', 0, 'MB', 'fsg', '', 'fasdf', '<p>fsg</p>', 'fsdf', '', '', 1, 'Download/201003/4b910457af736.jpg', 'Download/201003/4b910457af736_s.jpg', 0, 0, 0, 0, 0, 1267718400, 0),
-(4, 1, 'asdf', '', '', 15, '', '', 'zip', 0, 'MB', 'asdf', '', '', '<p>fasdf</p>', '', '', '', 1, 'Download/201003/4b91048378829.gif', 'Download/201003/4b91048378829_s.gif', 1, 0, 0, 0, 0, 1267718400, 0),
-(5, 1, 'ccc', '', '', 15, '', '', 'zip', 0, 'MB', 'cc', '', '', '<p>cc</p>', '了修正,55,fadsf,hghdf', '', '', 0, '', '', 0, 0, 0, 0, 0, 1267891200, 0);
+INSERT INTO `yge_download` (`id`, `user_id`, `fs_id`, `title`, `title_style`, `title_style_serialize`, `category_id`, `keyword`, `run_system`, `extension`, `file_size`, `file_size_unit`, `download_url`, `link_url`, `description`, `content`, `tags`, `template`, `file_attach`, `attach`, `attach_image`, `attach_thumb`, `view_count`, `istop`, `recommend`, `status`, `display_order`, `create_time`, `update_time`) VALUES
+(7, 1, 1749513692, '迷你简书魂', '', '', 139, '', 'window', 'zip', '1.6', 'MB', '/apps/zitiwu01/迷你简字库/迷你简书魂.rar', '', '挺好的呵呵', '这个文件非常不错', '', '', '', 1, '/Download/201310/m_526bc1f6da478.gif', '/Download/201310/s_526bc1f6da478.gif', 0, 0, 0, 0, 0, 1382716800, 0),
+(8, 1, 288840851, '经典特黑简', '', '', 146, '', '', 'zip', '1.1', 'MB', '/apps/zitiwu01/经典字库/经典特黑简.rar', '', '这个还是不错的但是需要补充图片了', '啊撒大声地', '', '', '', 1, '/Download/201310/m_526bf1048cdaf.gif', '/Download/201310/s_526bf1048cdaf.gif', 0, 0, 0, 0, 0, 1382803200, 0);
 
 -- --------------------------------------------------------
 

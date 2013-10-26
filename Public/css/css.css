@@ -1,4 +1,4 @@
-.wp{ margin:0 3em; min-width:900px;}
+.wp{ margin:0 3em; min-width:900px; max-width:1000px; margin:0 auto;}
 #header{ height:66px; padding-top:10px; border-bottom:1px dotted #CCCCCC}
 .logo{ float:left; width:150px;}
 
@@ -10,7 +10,7 @@
 .search{ width:22%; float:right; margin-top:10px; text-align:right; min-width:300px}
 .search input{ height:24px; width:80%; border:1px solid #ccc; border-top:1px  solid #666; line-height:22px; float:left;}
 .search button{ height:26px;  width:19%; border:1px solid #222;  background:#333; color:#F1F1F1; float:left; cursor:pointer}
-.main{ margin:0 3em;  height:auto; color:#555; overflow:hidden;}
+.main{ height:auto; color:#555; overflow:hidden;}
 .left{ width:23.5987654%; float:left; _display:inline; min-height:500px; border-right:1px dotted #ccc;}
 .left .f-list{ padding-right:18px;}
 .equal {
@@ -35,7 +35,7 @@ div.footer{ border-top:1px dotted #CCCCCC; line-height:2em; color:#666}
 .right .f-view ul li span.down-bt a{ color:#666; background:#f3f3f3; font-size:1em/100%; border:1px solid #ddd; padding:0.2em 0.7em}
 .right .f-view ul li span.down-bt a:hover{ color:#FFF; background:#060}
 .f-title{ margin:0 0.6em; margin-top:-0px;}
-.right .f-view ul li img{-webkit-filter:grayscale(1); width:100%; max-width:230px}
+.right .f-view ul li img{-webkit-filter:grayscale(1); width:100%; max-width:230px; height:52px;}
 #down-box{height:180px; margin-left:-10px; overflow:hidden; width:460px; margin-top:-2000px; position:relative;}
 .location{ font-size:1em; line-height:2.5em; border-bottom:1px dotted #ccc; padding-left:2em;}
 .location a{ font-size:1em;}

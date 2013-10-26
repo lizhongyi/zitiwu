@@ -103,6 +103,16 @@ break;
 }
 }
 }
+
+
+
+
+     
+
+
+
+
+
 function isEnglist($param)
 {
 if (!eregi("^[A-Z0-9]{1,26}$",$param)) {
@@ -1087,5 +1097,34 @@ $str = ereg_replace(" "," ",$str);
 return trim($str); 
 }
 		
+		
+	
+	
+	function get_parent_cat1($arr,$cid,$jingtai,$mod)
+
+{   
+  
+	foreach($arr as $k=>$v)
+	{
+	 if($v['id'] == $cid)
+	  { $ff.=" > ";
+	    if($jingtai==1 && $v['html_url'] != "" && file_exists($v['html_url'])){
+		$ff.= "<a href='/".$v['html_url']."'>".$v['title']."</a>";
+		}else{
+		$ff.= "<a href='".U("".$mod."/index",array('cate'=>$v['biaozhi']))."'>".$v['title']."</a>";
+			}
+		 get_parent_cat1($arr,$v['parent_id'],$jingtai,$mod);
+	  }	
+	}
+	
+	echo $ff;
+}
+	
+	
+		
+		
+		
+		
+	
 		
 ?>

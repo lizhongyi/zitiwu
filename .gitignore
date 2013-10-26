@@ -3,3 +3,4 @@ App/Runtime
 Public/js/editor/*
 config.inc.php
 Admin/Runtime
+api.txt

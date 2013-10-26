@@ -1,25 +1,75 @@
-<include file="Public:header" />
-<!--单页-->
-<div id="page" class="clear">
-<div id="category">
-<ul id="pt">
-<volist name="downloadCategory" id="row">
-<li class="{$Think.get.category|a2bc=$row['id'], 'current',''}">{$row.str_repeat}<img src="__ROOT__/Public/Front/icon_arrow04.gif" /><a href="{:U('Download/index', array('category' => $row['id']))}">{$row.title}</a></li>
-</volist>
-</ul>
-</div>
-<div id="main">
-<h3 class="title"><neq name="Think.get.category" value="">{$Think.get.category|selectCategory}<else/>下载中心</neq> <em>Download</em></h3>
-<form action="{:U('Search/getList')}" method="get"><div class="search">内容搜索:<input name="keyword" class="input" type="text" id="keyword" size="15" /> <input name="submit" type="submit" value="提交搜索" id="submit" /><input name="module" type="hidden" value="Download" /></div></form>
-<ul class="list">
- <volist name="dataContentList" id="row">
- <li><if condition="$row['link_url'] neq ''"><a href="{$row.link_url}" target="_blank" style="{$row.title_style}">{$row.title}</a><else/><a href="{:U('Download/detail',array('item'=>$row['id']))}" target="_blank" style="{$row.title_style}">{$row.title}</a></if> <span class="time">[{$row.create_time|date="Y-m-d",###}]</span></li>
- </volist>
-</ul>
- <div class="pages">
-      <div class="plist">{$pageContentBar}</div>
-    </div>
-    </div>
-</div>
-<!--底部-->
+<include file="Public:header" />
+
+
+
+<section
+<div class="main wp">
+
+<div class="left equal">
+<div class="f-list">
+{$f_list}
+</div>
+</div>
+
+<div class="right equal">
+<div class="location">
+首页：{:get_parent_cat1($cateArr,$cate['id'],0,'Download')}
+</div>
+<div class="f-view">
+
+
+<ul class="search_ul">
+
+<present name="dataList">
+<volist name='dataList' id="vo">
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <li>
+<div class="f-img">
+<a href="/Download/detail/fs_id/{$vo.fs_id}"><img src="/Uploads/{$vo['attach_image']}"/></a>
+</div>
+
+<div  class="f-title">
+<span class="down-bt fr"><a href="/Download/detail/fs_id/{$vo.fs_id}">下载</a></span><span class="s-t fl"><a href="/Download/detail/fs_id/{$vo.fs_id}">{$vo.title}</a></span>
+<div class="clear"></div>
+</div>
+</li>
+
+
+</volist>
+<else/>
+<li>没有找到相关资源，可以尝试使用Ctrl+F浏览器搜索分类哦</li>
+</present>
+</ul>
+
+
+
+</div>
+<div class="clear"></div>
+</div>
+
+</section>
+<script src="/Public/js/d.js"></script>
+<script>
+
+
+$(".d-bt a").click(function(e) {
+	
+	
+	 loadaddr($(this).attr('did'));
+	 
+	 
+});
+
+
+
+</script>
+
+
+
 <include file="Public:footer" />

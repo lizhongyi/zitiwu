@@ -1,0 +1,31 @@
+<ul style=" border:1px solid #ddd; padding:8px;">
+<present name="dataList">
+<volist name='dataList' id="vo">
+ 
+ <li style="float:left; line-height:30px;"><a href="javascript:;" class="zi" fs_id="{$vo['fs_id']}" path="{$vo['path']}" size='{$vo["size"]}'>{$vo.title}</a>　　</li>
+
+</volist>
+<else/>
+
+<li>没有找到相关资源，可以尝试使用Ctrl+F浏览器搜索分类哦</li>
+
+</present>
+<div style="clear:both"></div>
+</ul>
+
+<script>
+$(".zi").click(function(e) {
+    
+	  $("#title").val($(this).text());
+	  $("#fs_id").val($(this).attr('fs_id'));
+	  $("#download_url").val($(this).attr('path'));
+	  $("#file_size").val(returnFloat1($(this).attr('size') / 1000000 ));
+	  $("#ku-box").hide();
+});
+
+function returnFloat1(value) {    value = Math.round(parseFloat(value) * 10) / 10;
+    if (value.toString().indexOf(".") < 0)
+     value = value.toString() + ".0";
+    return value;
+   }
+</script>

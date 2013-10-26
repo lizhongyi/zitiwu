@@ -29,7 +29,19 @@ class IndexAction extends GlobalAction
 		
 		  //一级分类列表
 		  
-		   $this->assign('case',$case);
+		
+
+        $dataList = M('Download')->Field('fs_id,title,attach_image,id')->order('recommend,display_order,id desc')->limit(40)->select();
+
+        if($dataList !== false)
+
+        {
+
+           
+
+            $this->assign('dataList', $dataList);
+
+        }
 		   $this->display();
 	
          }	

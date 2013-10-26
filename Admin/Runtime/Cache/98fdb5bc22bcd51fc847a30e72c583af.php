@@ -178,315 +178,109 @@ $(document).ready(function(){
 		</div>
 
 
-		<div id="content">
-
-
-<div class="mainarea">
-
-
-<div class="maininner">
-
-
-<script type="text/javascript">
-
-
-    $(document).ready(function() {
-
-
-        $("#mainFrom").validate({
-
-
-            rules: {
-
-
-                title: "required",
-
-
-				 biaozhi: "required"
-
-
-                /*,
-
-
-			code_body: "required"*/
-
-
-            },
-
-
-            messages: {
-
-
-                title: "名称必须填写",
-
-
-				biaozhi: "标识必须填写"
-
-
-                /*,
-
-
-			code_body: "广告代码必须填写"*/
-
-
-            }
-
-
-        });
-
-
-    });
-
-
-
-
-
-    function style_show(theobj) {
-
-
-        var styles, key;
-
-
-        styles = new Array('0');
-
-
-        for (key in styles) {
-
-
-            var obj = $doc('root_' + styles[key]);
-
-
-            obj.style.display = styles[key] == theobj.options[theobj.selectedIndex].value ? '': 'none';
-
-
-        }
-
-
-    }
-
-
-</script>
-
-
-
-
-
-<form method="post" action="<?php echo U("Category/doInsert");?>" id="mainFrom">
-
-
-	<div class="body_content">
-
-
-		<div class="top_action"><a href="__URL__">返回分类</a> | <a href="<?php echo U("Category/insert");?>">录入分类</a></div>
-
-
-		<table cellspacing="0" cellpadding="0" id="maintable" class="formtable">
-
-
-		<tr>
-
-
-		  <th style="width:12em;">分类名称</th>
-
-
-		<td><input name="title" id="title"></td></tr>
-
-
-		<tr>
-
-
-        <tr>
-
-
-		  <th style="width:12em;">分类标志</th>
-
-
-		<td><input name="biaozhi" id="biaozhi">(英文或拼音)</td></tr>
-
-
-		<tr>
-
-
-		  <th style="width:12em;">上级分类</th>
-
-
-		  <td>
-
-
-          
-
-
-          <select name="parent_id" id="parent_id"  onchange="style_show(this)">
-
-
-          <option value="0">■■根分类■■</option>
-
-
-         <?php echo (buildselect($dataList,0, $parentId)); ?>
-
-
-          </select></td>
-
-
-		  </tr>
-
-
-		
-
-
-       <tbody id="root_0" <?php if($parentId == 0): ?>style="display:"<?php else: ?>style="display:none"<?php endif; ?>>
-
-
-        <tr>
-
-
-		  <th style="width:12em;">所属模块</th>
-
-
-		  <td><select name="module" id="module">
-
-
-          <?php if(is_array($module)): $i = 0; $__LIST__ = $module;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$row): $mod = ($i % 2 );++$i;?><option value="<?php echo ($row["module_name"]); ?>" <?php if($module_name == $row['module_name']): ?>selected='selected'<?php else: endif; ?> ><?php echo ($row["module_title"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-
-
-		  </select></td>
-
-
-		  </tr>
-
-
-           </tbody>
-
-
-		<tr>
-
-
-		  <th style="width:12em;">关 键 字</th>
-
-
-		  <td><input name="keyword" class="input"id="keyword" /></td>
-
-
-		  </tr>
-
-
-		<tr>
-
-
-		  <th style="width:12em;">排　　序</th>
-
-
-		  <td><input name="display_order" id="display_order" value="0" /></td>
-
-
-		  </tr>
-
-
-		<tr>
-
-
-		  <th style="width:12em;">简单描述</th>
-
-
-		  <td><textarea name="description" cols="40" rows="4" id="description"></textarea></td>
-
-
-		  </tr>
-
-
-		<tr>
-
-
-		  <th style="width:12em;">状　　态</th>
-
-
-		  <td><label>
-
-
-		    <select name="status" id="status">
-
-
-		      <option value="0" selected="selected">显示</option>
-
-
-		      <option value="1">隐藏</option>
-
-
-		      </select>
-
-
-		    </label></td>
-
-
-		  </tr>
-
-
-          <tr>
-
-
-		  <th style="width:12em;">保　　护</th>
-
-
-		  <td><label>
-
-
-		    <select name="protected" id="protected">
-
-
-		      <option value="0" selected="selected">默认不保护</option>
-
-
-		      <option value="1">保护分类</option>
-
-
-		      </select>
-
-
-		    </label></td>
-
-
-		  </tr>
-
-
-		</tbody>
-
-
-		
-
-
-		</table>
-
-
-	</div>
-
-
-	<div class="foot_action">
-
-
-		<input type="submit" name="submit" value="提交录入" class="submit">
-
-
-        <input type="reset" name="button" id="button" value="还原重填" class="submit"/>
-
-
-	</div>
-
-
-	</form>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-<div class="side">
-
-
+		<div id="content">
+<div class="mainarea">
+<div class="maininner">
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#mainFrom").validate({
+            rules: {
+                title: "required",
+				 biaozhi: "required"
+                /*,
+			code_body: "required"*/
+            },
+            messages: {
+                title: "名称必须填写",
+				biaozhi: "标识必须填写"
+                /*,
+			code_body: "广告代码必须填写"*/
+            }
+        });
+    });
+
+    function style_show(theobj) {
+        var styles, key;
+        styles = new Array('0');
+        for (key in styles) {
+            var obj = $doc('root_' + styles[key]);
+            obj.style.display = styles[key] == theobj.options[theobj.selectedIndex].value ? '': 'none';
+        }
+    }
+</script>
+
+<form method="post" action="<?php echo U("Category/doInsert");?>" id="mainFrom">
+	<div class="body_content">
+		<div class="top_action"><a href="__URL__">返回分类</a> | <a href="<?php echo U("Category/insert");?>">录入分类</a></div>
+		<table cellspacing="0" cellpadding="0" id="maintable" class="formtable">
+		<tr>
+		  <th style="width:12em;">分类名称</th>
+		<td><input name="title" id="title"></td></tr>
+		<tr>
+        <tr>
+		  <th style="width:12em;">分类标志</th>
+		<td><input name="biaozhi" id="biaozhi">(英文或拼音)</td></tr>
+		<tr>
+		  <th style="width:12em;">上级分类</th>
+		  <td>
+          
+          <select name="parent_id" id="parent_id"  onchange="style_show(this)">
+          <option value="0">■■根分类■■</option>
+         <?php echo (buildselect($dataList,0, $parentId)); ?>
+          </select></td>
+		  </tr>
+		
+       <tbody id="root_0" <?php if($parentId == 0): ?>style="display:"<?php else: ?>style="display:none"<?php endif; ?>>
+        <tr>
+		  <th style="width:12em;">所属模块</th>
+		  <td><select name="module" id="module">
+          <?php if(is_array($module)): $i = 0; $__LIST__ = $module;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$row): $mod = ($i % 2 );++$i;?><option value="<?php echo ($row["module_name"]); ?>" <?php if($module_name == $row['module_name']): ?>selected='selected'<?php else: endif; ?> ><?php echo ($row["module_title"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+		  </select></td>
+		  </tr>
+           </tbody>
+		<tr>
+		  <th style="width:12em;">关 键 字</th>
+		  <td><input name="keyword" class="input"id="keyword" /></td>
+		  </tr>
+		<tr>
+		  <th style="width:12em;">排　　序</th>
+		  <td><input name="display_order" id="display_order" value="0" /></td>
+		  </tr>
+		<tr>
+		  <th style="width:12em;">简单描述</th>
+		  <td><textarea name="description" cols="40" rows="4" id="description"></textarea></td>
+		  </tr>
+		<tr>
+		  <th style="width:12em;">状　　态</th>
+		  <td><label>
+		    <select name="status" id="status">
+		      <option value="0" selected="selected">显示</option>
+		      <option value="1">隐藏</option>
+		      </select>
+		    </label></td>
+		  </tr>
+          <tr>
+		  <th style="width:12em;">保　　护</th>
+		  <td><label>
+		    <select name="protected" id="protected">
+		      <option value="0" selected="selected">默认不保护</option>
+		      <option value="1">保护分类</option>
+		      </select>
+		    </label></td>
+		  </tr>
+		</tbody>
+		
+		</table>
+	</div>
+	<div class="foot_action">
+		<input type="submit" name="submit" value="提交录入" class="submit">
+        <input type="reset" name="button" id="button" value="还原重填" class="submit"/>
+	</div>
+	</form>
+</div>
+</div>
+
+<div class="side">
 	<div class="block style1">
 
 		<h2><div class="set">常规设置</div></h2>
@@ -563,55 +357,21 @@ $(document).ready(function(){
 
 	</div>
 
-
-
-
-</div>
-
-
-</div>
-
-
-<div id="footer">
-
-
-	<p> Copyright 2008-2010 <a href="#" target="_blank"></a>
-
-
-</p>
-
-
-</div>
-
-
-</div>
-
-
-<script type="text/javascript">
-
-
-$(function(){ 
-
-
-    $(".<?php echo ($moduleName); ?>").addClass("active");
-
-
-    $(".confirmSubmit").click(function() {
-
-
-        return confirm('本操作不可恢复，确定继续？');
-
-
-    });
-
-
-}); 
-
-
-</script>
-
-
-</body>
-
-
+
+</div>
+</div>
+<div id="footer">
+	<p> Copyright 2008-2010 <a href="#" target="_blank"></a>
+</p>
+</div>
+</div>
+<script type="text/javascript">
+$(function(){ 
+    $(".<?php echo ($moduleName); ?>").addClass("active");
+    $(".confirmSubmit").click(function() {
+        return confirm('本操作不可恢复，确定继续？');
+    });
+}); 
+</script>
+</body>
 </html>

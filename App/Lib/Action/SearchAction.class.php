@@ -56,29 +56,62 @@ class SearchAction extends GlobalAction
 
      */
 
-    public function getList()
+    public function index()
 
-    {
+    {   
+	   require_once './libs/BaiduPCS.class.php';
+               //请根据实际情况更新$access_token与$appName参数
+        $access_token = 	C('MY_TOKEN');
 
-        $keyword = dadds($_GET['keyword']);
+        $appName = 'zitiwu01';
+      //应用根目录
+     $root_dir = '/apps' . '/' . $appName . '/';
 
-        $module = dadds(trim($_GET['module']));
+       //搜索关键字
+      $wd = $_GET['keyword'];
+//搜索的目录路径，此处为搜索应用根目录
+$path = $root_dir;
+//是否递归搜索
+$re = 1;
 
-        $moduleArr = array('Article', 'Product', 'Download', 'Job');
+$pcs = new BaiduPCS($access_token);
+$result = $pcs->search($path, $wd, $re);
+  
+  $getList=json_decode($result);
+   
+   $list=(array)$getList->list;
+  
+   foreach($list as $k=>$v){
+	      
+		  $list[$k]=(array)($list[$k]);
+	   
+	   }
+   //如果资源没有的花那么就搜索分类
+	   
+	foreach($list as $k=>$v){
+	      
+		  $list[$k]['title']=$this->imp($v['path']);
+	   
+	   }
+	   
+	   
+   $this->assign('dataList',$list);
+  
 
-        //!in_array($module, $moduleArr) && parent::_message('error', '非法模块', U('Index/index'));
-
-        $this->dao = M($module);
-
-		
-
-        $this->assign('module', $module);
-
-        parent::getList("title like '%{$keyword}%'");
+   $this->display();
 
     }
 
-
+  
+     public function imp($str){
+		 
+		      if(!$str) return false;
+			  $arr=explode('/',$str);
+			 $title= substr($title=$arr[4],0,-4);
+			 
+				return $title;  
+		 
+		 }
 
     /**
 

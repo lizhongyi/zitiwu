@@ -10,118 +10,71 @@
     $(document).ready(function() {
 
 
-        $("#mainFrom").validate({
-
-
-            rules: {
-
-
-                title: "required",
-
-
-                content: "fckeditor",
-
-
-                download_url: "required",
-
-
-                view_count: {
-
-
-                    required: true,
-
-
-                    number: true
-
-
-                },
-
-
-                file_size: {
-
-
-                    required: true,
-
-
-                    number: true
-
-
-                },
-
-
-                display_order: {
-
-
-                    required: true,
-
-
-                    number: true
-
-
-                }
-
-
-            },
-
-
-            messages: {
-
-
-                title: "文件名称必须填写",
-
-
-                download_url: "下载地址必须填写",
-
-
-                content: "内容必须填写",
-
-
-                view_count: {
-
-
-                    required: "浏览数必须填写",
-
-
-                    number: '浏览数必须为数字'
-
-
-                },
-
-
-                file_size: {
-
-
-                    required: "文件大小必须填写",
-
-
-                    number: '文件大小必须为数字'
-
-
-                },
-
-
-                display_order: {
-
-
-                    required: "排序必须填写",
-
-
-                    number: '排序必须为数字'
-
-
-                }
-
-
-            }
-
-
-        });
-
-
-        colorPicker();
-
+       
+		
+		
+		
+		
+		
+		
+
+
+  
+$("#select").change(function(e) {
+      
+	  $("#select1").val($(this).find("option:selected").text());
+	  
+});
+ 
+ $("#attach_file1").change(function(e) {
+    
+	 $("#select1").val($("#select").find("option:selected").text());
+}); 
+  
+  
+ 
+ 
+    $("#sr-ku").click(function(e) {
+    
+	$("#ku-box").load('/admin.php/Download/sr_ku/keyword/'+$("#title").val()).show();
+	 
+	 
+});
+
+ 
+ 
 
     });
+
+function callback($obj){
+	
+	   if($obj.fs_id != undefined){
+		     //文件大小
+		    $("#file_size").val($obj.size / 1000000);
+			$("#download_url").val($obj.path)
+		   
+		   }else if($obj.error != undefined){
+			   
+			   $("#download_url").val($obj)
+			   
+			   }else{
+				    $("#download_url").val($obj.error)
+				   }
+			   
+			   
+	
+	}
+
+
+
+
+
+
+
+
+
+
+
 
 
 </script>
@@ -133,7 +86,7 @@
 <div class="maininner">
 
 
-<div class="block style4">
+<div class="block style4" style="position:relative">
 
 
   <table cellspacing="3" cellpadding="3">
@@ -172,10 +125,26 @@
 
 
 
-<form method="post" action="{:U("Download/doModify")}" enctype="multipart/form-data" id="mainFrom">
 
 
-	<div class="body_content">
+
+	<div class="body_content" style="position:relative">
+<div style="width:300px; height:200px; position:absolute; right:0px; top:260px">
+ 
+ <form name="" method="post" id="" enctype="multipart/form-data" action="{:U('Download/up_pan')}" target="fr">
+
+<input name="file" type="file" id="attach_file1" />
+<input name="cate_path"  id="select1">
+
+
+              
+<input type="submit" value="提交"/>
+</form>
+
+<iframe name="fr" id="fr"  frameborder="0" scrolling="" width="100" height="300" style="display:none1"></iframe>
+ </div>
+<form method="post" action="{:U("Download/doModify")}" enctype="multipart/form-data">
+
 
 
 		<div class="top_action"><a href="__URL__">返回列表</a> |  <a href="{:U("Download/insert")}">录入下载</a>|  <a href="{:U("Category/index")}">分类管理</a></div>
@@ -190,7 +159,8 @@
 		  <th style="width:8em;"><label for="title">文件名称</label></th>
 
 
-		<td><input name="title" id="title" value="{$vo.title}" size="40"></td></tr>
+		<td><input name="title" id="title" value="{$vo.title}" size="40"><a id="sr-ku" href="javascript:;">资源库</a>
+        <div id="ku-box" style="width:400px; display:none"></div></td></tr>
 
 
         <tr>
@@ -334,31 +304,6 @@
 		    <textarea name="content" cols="50" rows="4" id="content">{$vo.content}</textarea>
 
 
-<script src="__PUBLIC__/js/FCKeditor/fckeditor.js"></script>
-
-
-<script>
-
-
-	var oFCKeditor = new FCKeditor('content') ;
-
-
-	oFCKeditor.BasePath = '__PUBLIC__/js/FCKeditor/';
-
-
-	oFCKeditor.Width = '100%';
-
-
-	oFCKeditor.Height = '400';
-
-
-	oFCKeditor.ToolbarSet = 'Default';
-
-
-	oFCKeditor.ReplaceTextarea();
-
-
-</script>
 
 
             </th>
@@ -552,11 +497,11 @@
 
         <input name="old_thumb" type="hidden" id="old_thumb" value="{$vo.attach_thumb}" />
 
-
+</form>
 	</div>
 
 
-	</form>
+	
 
 
 </div>

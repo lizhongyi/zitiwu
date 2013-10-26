@@ -79,9 +79,9 @@ class GlobalAction extends Action
 			    
 				if($v['parent_id']==14){
 					 $listStr.="</dl>";
-				     $listStr.="<dl><dt><a href='#'>".$v['title']."</a></dt>";	
+				     $listStr.="<dl><dt><a href='/Download/index/cate/".$v['biaozhi']."'>".$v['title']."</a></dt>";	
 					}else{
-						 $listStr.="<dd><a href='#'>".$v['title']."<span class='num'>(30)</span></a></dd>";
+						 $listStr.="<dd><a href='/Download/index/cate/".$v['biaozhi']."'>".$v['title']."<span class='num'>(30)</span></a></dd>";
 						}
 			       
 				   

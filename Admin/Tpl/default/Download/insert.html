@@ -118,7 +118,56 @@
         });
 
 
+
+
+$("#select").change(function(e) {
+      
+	  $("#select1").val($(this).find("option:selected").text());
+	  
+});
+ 
+ $("#attach_file1").change(function(e) {
+    
+	 $("#select1").val($("#select").find("option:selected").text());
+}); 
+  
+  
+ 
+ 
+    $("#sr-ku").click(function(e) {
+     if($("#ku-box").html()==""){
+	$("#ku-box").load('/admin.php/Download/sr_ku/keyword/'+$("#title").val()).show();
+	 }else{
+		 $("#ku-box").show();
+		 }
+	 
+});
+
+ 
+ 
+
     });
+
+function callback($obj){
+	
+	   if($obj.fs_id != undefined){
+		     //文件大小
+		    $("#file_size").val($obj.size / 1000000);
+			$("#download_url").val($obj.path)
+		   
+		   }else if($obj.error != undefined){
+			   
+			   $("#download_url").val($obj)
+			   
+			   }else{
+				    $("#download_url").val($obj.error)
+				   }
+			   
+			   
+	
+	}
+
+
 
 
 </script>
@@ -130,8 +179,22 @@
 <div class="maininner">
 
 
-<div class="block style4">
+<div class="block style4" style="position:relative">
+ 
+ <div style="width:300px; height:200px; position:absolute; right:0px; top:260px">
+ 
+ <form name="" method="post" id="" enctype="multipart/form-data" action="{:U('Download/up_pan')}" target="fr">
 
+<input name="file" type="file" id="attach_file1" />
+<input name="cate_path"  id="select1">
+
+
+              
+<input type="submit" value="提交"/>
+</form>
+
+<iframe name="fr" id="fr"  frameborder="0" scrolling="" width="600" height="400" style="display:none1"></iframe>
+ </div>
 
   <table cellspacing="3" cellpadding="3">
 
@@ -187,7 +250,9 @@
 		  <th style="width:8em;"><label for="title">文件名称</label></th>
 
 
-		<td><input name="title" id="title" size="40"></td></tr>
+		<td><input name="title" id="title" size="30"><a id="sr-ku" href="javascript:;">资源库</a>
+        <div id="ku-box" style="width:400px; display:none"></div>
+        </td></tr>
 
 
         <tr>
@@ -265,7 +330,7 @@
 		    <option value="T">T</option>
 
 
-		    </select></td></tr>
+		    </select><input id="fs_id" name="fs_id"/></td></tr>
 
 
 		
@@ -295,7 +360,11 @@
        
 
 
-       <tr>
+          <tr>
+              <th style="width:8em;">&nbsp;</th>
+              <td></td>
+          </tr>
+          <tr>
 
 
             <th style="width:8em;"><label for="attach_file">缩略图片</label></th>
@@ -325,7 +394,7 @@
 		   <textarea name="content" cols="50" rows="4" id="content">{$vo.content}</textarea>
 
 
-<script src="__PUBLIC__/js/FCKeditor/fckeditor.js"></script>
+
 
 
 <script>
@@ -566,6 +635,11 @@
 
 
 </div>
+
+<script>
+
+
+</script>
 
 
 <include file="Public:footer" />
