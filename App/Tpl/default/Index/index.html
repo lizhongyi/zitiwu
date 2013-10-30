@@ -27,7 +27,7 @@
  
  <li>
 <div class="f-img">
-<a href="/Download/detail/id/{$vo.id}"><img src="/Uploads/{$vo['attach_image']}"/></a>
+<a href="/Download/detail/id/{$vo.id}"><img src="<if condition="$vo['attach_image'] neq ''">/Uploads/{$vo['attach_image']}<else/>/Public/img/nopic.png</if>"/></a>
 </div>
 
 <div  class="f-title">

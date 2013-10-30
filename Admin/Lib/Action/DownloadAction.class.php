@@ -117,7 +117,7 @@ class DownloadAction extends GlobalAction
 
         $viewCount1 && $condition['a.view_count'] = array('between', $setViewCount);
 
-        $count = $this->dao->where($condition)->count();
+        $count = $this->dao->Table(C('DB_PREFIX').'download a')->where($condition)->count();
        // echo $count;
         $listRows = empty($pageSize) || $pageSize > 100 ? 15 : $pageSize ;
 
