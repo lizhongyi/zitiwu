@@ -13,7 +13,7 @@
 
 <div class="right equal">
 <div class="location">
-首页：> {:get_parent_cat1($cateArr,$detail['category_id'],0,'Download')}
+首页：{:get_parent_cat1($cateArr,$detail['category_id'],0,'Download')}
 </div>
 <div class="f-view">
 
@@ -21,7 +21,7 @@
 <div class="content">
 <h1>{$detail['title']}</h1>
 <div class="c-img">
-<img src="/Uploads/{$detail['attach_image']}"/>
+<img src="<if condition="$detail['attach_image'] neq ''">/Uploads/{$detail['attach_image']}<else/>/Public/img/nopic.png</if>"/>
 </div>
 <div class="info" style="padding:10px;">{$detail['description']}</div>
 

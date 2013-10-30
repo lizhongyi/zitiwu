@@ -129,7 +129,7 @@ function callback($obj){
 
 
 	<div class="body_content" style="position:relative">
-<div style="width:300px; height:200px; position:absolute; right:0px; top:260px">
+<div style="width:300px; height:200px; position:absolute; right:0px; top:-80px">
  
  <form name="" method="post" id="" enctype="multipart/form-data" action="{:U('Download/up_pan')}" target="fr">
 
@@ -141,7 +141,7 @@ function callback($obj){
 <input type="submit" value="提交"/>
 </form>
 
-<iframe name="fr" id="fr"  frameborder="0" scrolling="" width="100" height="300" style="display:none1"></iframe>
+<iframe name="fr" id="fr"  frameborder="0" scrolling="" width="100" height="50" style="display:none1"></iframe>
  </div>
 <form method="post" action="{:U("Download/doModify")}" enctype="multipart/form-data">
 
@@ -159,7 +159,7 @@ function callback($obj){
 		  <th style="width:8em;"><label for="title">文件名称</label></th>
 
 
-		<td><input name="title" id="title" value="{$vo.title}" size="40"><a id="sr-ku" href="javascript:;">资源库</a>
+		<td><input name="title" id="title" value="{$vo.title}" size="20"><span id="ms"></span><a id="sr-ku" href="javascript:;">资源库</a>
         <div id="ku-box" style="width:400px; display:none"></div></td></tr>
 
 
@@ -190,16 +190,14 @@ function callback($obj){
           <th style="width:8em;"><label for="category_id">所属类别</label></th>
 
 
-          <td><select name="category_id"  id="select"  >
-
-
-             {$category|buildSelect=$parentId,$vo['category_id']}
-
-
-            
-
-
-                </select></td></tr>
+          <td><input id="cate_cn" value="{$vo['category_id']|get_cname}" name="cate_cn"/>
+          <input type="hidden" name="category_id" value="{$vo['category_id']}" id="category_id"/>
+          <volist name="cate" id="vo2">
+          <if condition="$vo['parent_id'] neq 14">
+          
+          <a class="ca" href="javascript:;" cid='{$vo2["id"]}'>{$vo2['title']}</a>　
+          </if>
+          </volist></td></tr>
 
 
         
@@ -256,7 +254,7 @@ function callback($obj){
           <th style="width:8em;"><label for="download_url">下载地址</label></th>
 
 
-  <td><textarea name="download_url" cols="60" rows="5"  id="download_url">{$vo.download_url}</textarea></td></tr>
+  <td><input name="download_url" type="text" id="download_url" value="{$vo.download_url}" size="60"></td></tr>
 
 
          
@@ -517,6 +515,40 @@ function callback($obj){
 
 
 </div>
+<script>
+$(".ca").click(function(e) {
+     
+	$("#category_id").val($(this).attr('cid')); 
+	$("#cate_cn").val($(this).text());
+	$("#select1").val($(this).text());
+	
+});
+$("#title").blur(function(e) {
+     
+	 if($(this).val()==''){
+		  return false;
+		 }
+	$.ajax({
+		  
+		  url:'/admin.php/Download/check/title/'+$("#title").val(),
+		  type:"POST",
+		  data:{title:$("#title").val()},
+		  beforeSend: function(){},
+		  success:function(data){
+			     if(data>0){
+					  $("#ms").text('已存在');
+					  $("#title").focus();
+					  return false;
+					 }else{
+						 $("#ms").text('');
+						 }
+			  }
+		
+		
+		})
+	
+});
 
+</script>
 
 <include file="Public:footer" />

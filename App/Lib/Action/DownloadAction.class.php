@@ -41,10 +41,11 @@ class DownloadAction extends GlobalAction
 		
 		foreach($data_cate as $k=>$v){
 			     if($v['biaozhi']==$category){
-					   $category=array('id'=>$v['id'],'title'=>$v['title'],'biaozhi'=>$v['biaozhi'],'pid'=>$v['perent_id']);
+					   $category=array('id'=>$v['id'],'title'=>$v['title'],'biaozhi'=>$v['biaozhi'],'pid'=>$v['parent_id']);
 					 }
 			 }
 		 $this->cate=$category;
+		
 		// print_r($category);
 		$this->assign('cateArr',$data_cate);
 		$this->assign('cate',$category);
@@ -110,12 +111,13 @@ class DownloadAction extends GlobalAction
         $title &&  $condition['a.title'] = array('like', '%'.$title.'%');
 
         $recommend &&  $condition['a.recommend'] = array('eq', $recommend);
-         
-		 if($this->cate['pid'] != 0){ 
+        
+		 if($this->cate['pid'] != 14){ 
 		 
         $categoryId &&  $condition['a.category_id'] = array('eq', $categoryId);
+		
 		 }else{
-			   
+			  
 			   foreach($this->data_cate  as $k=>$v){
 				      
 					  if($v['parent_id']==$this->cate['id']){
@@ -129,18 +131,14 @@ class DownloadAction extends GlobalAction
 			   
 			    $categoryId &&  $condition['a.category_id'] = array('in', ($nk));
 			 }
-		 
-        $status && $condition['a.status'] = array('eq', $status);
+		// echo $this->cate['pid'];
+       
+     
 
-        $istop &&  $condition['a.istop'] = array('eq', $istop);
-
-        $createTime1 && $condition['a.create_time'] = array('between', $setTime);
-
-        $viewCount1 && $condition['a.view_count'] = array('between', $setViewCount);
-
-        $count = $this->dao->where($condition)->count();
-
-        $listRows = empty($pageSize) || $pageSize > 100 ? 15 : $pageSize ;
+        $count = $this->dao->Table(C('DB_PREFIX').'download a')->where($condition)->count();
+		
+     
+       $listRows = empty($listRows) ? 40 : $listRows;
 
         $p = new page($count, $listRows);
 
@@ -158,7 +156,7 @@ class DownloadAction extends GlobalAction
 
         }
 
-      
+       
 
         $this->display();
 
@@ -177,9 +175,9 @@ class DownloadAction extends GlobalAction
     public function detail(){
 
         $id = intval($_GET['id']);
-		$fs_id = intval($_GET['fs_id']);
+		$fs_id = $_GET['fs_id'];
         $detail = M('Download')->where("id=$id or fs_id=$fs_id")->find();
-		
+		   if (empty($detail)) parent::_message('error', '记录不存在');
         $this->assign('detail',$detail);
 		$this->display();
     }
@@ -203,7 +201,7 @@ class DownloadAction extends GlobalAction
 		 
 		 }
 		 
-require_once './libs/BaiduPCS.class.php';
+  require_once './libs/BaiduPCS.class.php';
  $access_token = 	C('MY_TOKEN');
 
 //文件路径
@@ -219,6 +217,49 @@ echo $result;
 		
 		}	
 		
+		
+		//批量导入字体库
+		
+		public function piliang(){
+			
+			    require_once './libs/BaiduPCS.class.php';
+               //请根据实际情况更新$access_token与$appName参数
+        $access_token = 	C('MY_TOKEN');
+
+        $appName = 'zitiwu01';
+      //应用根目录
+     $root_dir = '/apps' . '/' . $appName . '/';
+
+       //搜索关键字
+      $wd = $_GET['keyword'];
+//搜索的目录路径，此处为搜索应用根目录
+$path = $root_dir;
+//是否递归搜索
+$re = 1;
+
+$pcs = new BaiduPCS($access_token);
+$result = $pcs->search($path, $wd, $re);
+  
+  $getList=json_decode($result);
+   
+   $list=(array)$getList->list;
+    
+	//批量写入语句
+   foreach($list as $k=>$v){
+	      
+		  $list[$k]=(array)($list[$k]);
+	   
+	   }
+	   
+	   
+	   foreach($list as $k=>$v){
+		   
+		     echo $v['pass'];
+		   
+		   }
+			
+			     
+			}
 		
 
 }

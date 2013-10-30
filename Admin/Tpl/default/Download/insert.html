@@ -181,7 +181,7 @@ function callback($obj){
 
 <div class="block style4" style="position:relative">
  
- <div style="width:300px; height:200px; position:absolute; right:0px; top:260px">
+ <div style="width:300px; height:200px; position:absolute; right:0px; top:20px">
  
  <form name="" method="post" id="" enctype="multipart/form-data" action="{:U('Download/up_pan')}" target="fr">
 
@@ -193,7 +193,7 @@ function callback($obj){
 <input type="submit" value="提交"/>
 </form>
 
-<iframe name="fr" id="fr"  frameborder="0" scrolling="" width="600" height="400" style="display:none1"></iframe>
+<iframe name="fr" id="fr"  frameborder="0" scrolling="" width="600" height="50" style="display:none1"></iframe>
  </div>
 
   <table cellspacing="3" cellpadding="3">
@@ -250,7 +250,7 @@ function callback($obj){
 		  <th style="width:8em;"><label for="title">文件名称</label></th>
 
 
-		<td><input name="title" id="title" size="30"><a id="sr-ku" href="javascript:;">资源库</a>
+		<td><input name="title" id="title" size="30"><span id="ms"></span><a id="sr-ku" href="javascript:;">资源库</a>
         <div id="ku-box" style="width:400px; display:none"></div>
         </td></tr>
 
@@ -279,13 +279,16 @@ function callback($obj){
           <th style="width:8em;"><label for="category_id">所属类别</label></th>
 
 
-          <td><select name="category_id"  id="select"  >
-
-
-                 {$category|buildSelect=$parentId}
-
-
-                </select></td></tr>
+          <td>
+          <input id="cate_cn" name="cate_cn"/>
+          <input type="hidden" name="category_id" id="category_id"/>
+          <volist name="cate" id="vo">
+          <if condition="$vo['parent_id'] neq 14">
+          
+          <a class="ca" href="javascript:;" cid='{$vo["id"]}'>{$vo['title']}</a>　
+          </if>
+          </volist>
+          </td></tr>
 
 
         
@@ -397,28 +400,6 @@ function callback($obj){
 
 
 
-<script>
-
-
-	var oFCKeditor = new FCKeditor('content') ;
-
-
-	oFCKeditor.BasePath = '__PUBLIC__/js/FCKeditor/';
-
-
-	oFCKeditor.Width = '100%';
-
-
-	oFCKeditor.Height = '400';
-
-
-	oFCKeditor.ToolbarSet = 'Default';
-
-
-	oFCKeditor.ReplaceTextarea();
-
-
-</script>
 
 
 </th>
@@ -637,8 +618,40 @@ function callback($obj){
 </div>
 
 <script>
+$(".ca").click(function(e) {
+     
+	$("#category_id").val($(this).attr('cid')); 
+	$("#cate_cn").val($(this).text());
+	$("#select1").val($(this).text());
+	
+});
 
 
+$("#title").blur(function(e) {
+     
+	 if($(this).val()==''){
+		  return false;
+		 }
+	$.ajax({
+		  
+		  url:'/admin.php/Download/check/title/'+$("#title").val(),
+		  type:"POST",
+		  data:{title:$("#title").val()},
+		  beforeSend: function(){},
+		  success:function(data){
+			     if(data>0){
+					  $("#ms").text('已存在');
+					  $("#title").focus();
+					  return false;
+					 }else{
+						 $("#ms").text('');
+						 }
+			  }
+		
+		
+		})
+	
+});
 </script>
 
 

@@ -5,7 +5,7 @@ body { background:#f7f7f7; color: #000; text-align: center; line-height: 1.5em; 
 ul { list-style: none; }
 cite { font-style: normal; }
 a { color: #006600; text-decoration: none; }
-	a:hover { text-decoration: underline; }
+	a:hover { text-decoration: underline; font-weight:100 !important }
 	a img { border: none; }
 
 /*布局*/
@@ -35,7 +35,7 @@ a { color: #006600; text-decoration: none; }
 .body_content div{}
 .body_content .trbg{ background:#F5FFF7}
 /*表格变色*/
-.body_content  tr.over td{background: #FFFFFF; font-weight: bold; }    
+.body_content  tr.over td{background: #FFFFFF; font-weight: 100; }    
 /*.body_content  tr.double td{ background: #DAFFC7;}  */  
 
 .border-red{border:1px #ededed solid} 
@@ -71,7 +71,7 @@ a { color: #006600; text-decoration: none; }
 	
 .top_action { margin-bottom: 10px; padding-top: 0.5em; padding-bottom: 0.4em; border-bottom: 1px solid #ddd;height:30px; background:url(a_bg.png) 120px -436px repeat-x; color:#FEFEFE}
 	.top_action a {font-size: 12px;background:url(a_bg.png) 0px -492px no-repeat; float:left; display:inline; width:86px; text-align:center;  color:#666; display:block; height:26px; line-height:26px; margin-left:10px; border-bottom:1px #ccc solid; border-right:1px solid #ccc; border-top:1px solid #ccc; border-left:1px solid #ccc; border-bottom:1px solid #ddd; border-right:1px solid #ddd;}
-	.top_action a:hover { color:#333;font-size: 12px; text-decoration:none; font-weight:bold}
+	.top_action a:hover { color:#333;font-size: 12px; text-decoration:none; }
 
 .foot_action { margin: 0 0 1em; padding: 0.5em; border: 1px solid #DDD; border-top: 0px; background:#FFF;}
 	/*\*/ * html .foot_action { height: 1%; } /**/ * > .foot_action { overflow: hidden; }

@@ -1,0 +1,298 @@
+<tagLib name="html,cx" />
+
+
+<include file="Public:header" />
+
+
+<script type="text/javascript">
+
+
+    $(document).ready(function() {
+
+
+        $("#mainFrom").validate({
+
+
+            rules: {
+
+
+                title: "required",
+
+
+                content: "fckeditor",
+
+
+                download_url: "required",
+
+
+                view_count: {
+
+
+                    required: true,
+
+
+                    number: true
+
+
+                },
+
+
+                file_size: {
+
+
+                    required: true,
+
+
+                    number: true
+
+
+                },
+
+
+                display_order: {
+
+
+                    required: true,
+
+
+                    number: true
+
+
+                }
+
+
+            },
+
+
+            messages: {
+
+
+                title: "文件名称必须填写",
+
+
+                download_url: "下载地址必须填写",
+
+
+                content: "内容必须填写",
+
+
+                view_count: {
+
+
+                    required: "浏览数必须填写",
+
+
+                    number: '浏览数必须为数字'
+
+
+                },
+
+
+                file_size: {
+
+
+                    required: "文件大小必须填写",
+
+
+                    number: '文件大小必须为数字'
+
+
+                },
+
+
+                display_order: {
+
+
+                    required: "排序必须填写",
+
+
+                    number: '排序必须为数字'
+
+
+                }
+
+
+            }
+
+
+        });
+
+
+
+
+$("#select").change(function(e) {
+      
+	  $("#select1").val($(this).find("option:selected").text());
+	  
+});
+ 
+ $("#attach_file1").change(function(e) {
+    
+	 $("#select1").val($("#select").find("option:selected").text());
+}); 
+  
+  
+ 
+ 
+    $("#sr-ku").click(function(e) {
+     if($("#ku-box").html()==""){
+	$("#ku-box").load('/admin.php/Download/sr_ku/keyword/'+$("#title").val()).show();
+	 }else{
+		 $("#ku-box").show();
+		 }
+	 
+});
+
+ 
+ 
+
+    });
+
+function callback($obj){
+	
+	   if($obj.fs_id != undefined){
+		     //文件大小
+		    $("#file_size").val($obj.size / 1000000);
+			$("#download_url").val($obj.path)
+		   
+		   }else if($obj.error != undefined){
+			   
+			   $("#download_url").val($obj)
+			   
+			   }else{
+				    $("#download_url").val($obj.error)
+				   }
+			   
+			   
+	
+	}
+
+
+
+
+</script>
+
+
+<div class="mainarea">
+
+
+<div class="maininner">
+
+
+<div class="block style4" style="position:relative">
+ 
+ 
+
+  <table cellspacing="3" cellpadding="3">
+
+
+    <tr>
+
+
+      <th style="width:50px; text-align:center"><a href="http://www.YIGECMS.cn/manual.php?app=shuguangCorp&module={$moduleName}" target="_blank"><img src="__PUBLIC__/Admin/help_1.gif" alt="" align="absmiddle" /><br />
+
+
+帮助</a></th>
+
+
+      <td>
+
+
+      <li>文件名称不能为空</li>
+
+
+        <li>下载地址必须填写，每行一个，必须包括http://</li>
+
+
+        <li>简单描述必须填写</li></td>
+
+
+    </tr>
+
+
+  </table>
+
+
+</div>
+
+
+
+
+
+<form method="post" action="{:U("Download/doInsert")}" enctype="multipart/form-data" id="mainFrom">
+
+
+	<div class="body_content">
+
+
+		<div class="top_action"><a href="__URL__">返回列表</a> |  <a href="{:U("Category/index")}">分类管理</a></div>
+        
+        <div id="ku-box">
+        
+        </div>
+        
+        
+	</div>
+
+<form name="" id="" >
+	<div class="foot_action">
+        
+         <input  id="title" name="title" value="">
+		<input type="button" name="submit" value="搜索" id="sr" class="submit">
+
+
+        <a id="daoru" href="/admin.php/Download/import">批量导入</a>
+
+
+	</div>
+
+
+	</form>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="side">
+
+
+<include file="Public:sider" />
+
+
+</div>
+
+<script>
+ $("#sr").click(function(e) {
+     $("#ku-box").html('加载中.....');
+	$("#ku-box").load('/admin.php/Download/sr_ku/keyword/'+$("#title").val()).show();
+	 
+	 
+	 
+ });
+ 
+ $("#daoru").click(function(e) {
+    
+	$.ajax({
+		  url:'/admin.php/Download/import',
+		  type:"GET",
+		  beforeSend: function(){
+			     $("#ku-box").html('数据导入中...');
+			   },
+		  success: function(data){
+			      $("#ku-box").html(data);
+			  }
+		  
+		
+		})
+	 
+});
+</script>
+
+
+<include file="Public:footer" />

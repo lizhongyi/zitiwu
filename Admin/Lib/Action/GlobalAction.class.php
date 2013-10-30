@@ -15,7 +15,13 @@ function _initialize()
             $this->sysConfig = M('Config')->where('id=1')->find(); 
 			
         }
-		
+		if(fileExit('./CmsData/cache.category.php')){
+            $this->globalCategory =require_once('./CmsData/cache.category.php');
+			//exit("到这一步了");
+        }else{
+            $this->globalCategory = M('Category')->order('display_order asc')->select(); 
+			
+        }
 		
 	
 

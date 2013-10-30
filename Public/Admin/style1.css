@@ -34,7 +34,7 @@ a { color: #006600; text-decoration: none; }
 .body_content .th-id{ width:12%}
 .body_content .trbg{ background:#F5FFF7}
 /*表格变色*/
-.body_content  tr.over td{background: #FFFFFF; font-weight: bold; }    
+.body_content  tr.over td{background: #FFFFFF;  }    
 /*.body_content  tr.double td{ background: #DAFFC7;}  */  
 
 .border-red{border:1px #F1F1F1 solid} 
@@ -67,7 +67,7 @@ a { color: #006600; text-decoration: none; }
 	
 .top_action { margin-bottom: 10px; padding-top: 0.4em; padding-bottom: 0.2em; border-bottom: 1px solid #F1F1F1;height:30px }
 	.top_action a { color:#FFF;font-size: 14px; padding:2px; background:#F1F1F1; font-weight:bold}
-	.top_action a:hover { color:#FFF;font-size: 14px; padding:2px; background:#F00; font-weight:bold }
+	.top_action a:hover { color:#FFF;font-size: 14px; padding:2px; background:#F00; }
 
 .foot_action { margin: 0 0 1em; padding: 0.5em; border: 1px solid #F1F1F1; border-top: 0px; }
 	/*\*/ * html .foot_action { height: 1%; } /**/ * > .foot_action { overflow: hidden; }

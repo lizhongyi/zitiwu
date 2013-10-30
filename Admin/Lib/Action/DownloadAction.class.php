@@ -40,25 +40,12 @@ class DownloadAction extends GlobalAction
 
         //取所有分类，过滤出文章模块主ID
 
-        $category = D('Category')->Order('display_order DESC,id DESC')->select();
-
-        foreach ((array)$category as $row){
-
-            if($row['module'] == 'Download'){
-
-                $parentId = $row['id'];
-
-            }
-
-        }
-
-        //取主ID下属分类
-
-        $this->assign('parentId', $parentId);
-
-        $this->assign('category', $category);
-
-        $this->assign($data);
+        $data_cate= getCategory($this->globalCategory, 14,0);
+        $this->data_cate=$data_cate;
+		
+	    $this->assign('cate',$data_cate);
+	   
+	   
 
         $this->dao = D('Download');
 		
@@ -131,7 +118,7 @@ class DownloadAction extends GlobalAction
         $viewCount1 && $condition['a.view_count'] = array('between', $setViewCount);
 
         $count = $this->dao->where($condition)->count();
-
+       // echo $count;
         $listRows = empty($pageSize) || $pageSize > 100 ? 15 : $pageSize ;
 
         $p = new page($count, $listRows);
@@ -275,7 +262,7 @@ class DownloadAction extends GlobalAction
         $item = intval($_GET["id"]);
 
         $record = $this->dao->Where('id='.$item)->find();
-
+      
         if (empty($item) || empty($record)) parent::_message('error', '记录不存在');
 
         $this->assign('vo', $record);
@@ -575,7 +562,25 @@ $result = $pcs->search($path, $wd, $re);
 	   
 	   }
 	   
-	   
+    $ed=$this->dao->where('title like "%'.$wd.'%"')->Field('fs_id')->select();
+	foreach($ed as $k=>$v){
+		  
+		  $ed1[]=$v['fs_id'];
+		} 
+	 
+	 //print_r($ed1);
+	 //过滤掉存在的
+	 
+	foreach($list as $k=>$v){
+		   
+		   if(in_array($v['fs_id'],$ed1)){
+			  unset($list[$k]);   
+			 }
+		
+		}
+	
+		Session::set('listArr',$list);
+   $this->assign('tiao',count($list)); 
    $this->assign('dataList',$list);
 
    $this->display();
@@ -585,7 +590,14 @@ $result = $pcs->search($path, $wd, $re);
 		
 		
 		
-		
+		public function check(){
+			 
+			  $title=$_POST['title'];
+			  if(empty($title)) return false;
+			  $cn=M('Download')->where('title="'.$title.'"')->count();
+			  echo $cn;
+			
+			}
 		
 		
 		
@@ -594,7 +606,7 @@ $result = $pcs->search($path, $wd, $re);
 	
 
   
-     public function imp($str){
+     public function imp($str,$n){
 		 
 		      if(!$str) return false;
 			  $arr=explode('/',$str);
@@ -603,10 +615,65 @@ $result = $pcs->search($path, $wd, $re);
 			  }else{
 			 $title= substr($title=$arr[4],0,-4);
 			  }
+			  if($n==1){
+				  $title= substr($arr[3]); 
+			  }
 				return $title;  
 		 
 		 }
 
+	
+	
+	
+	public function piliang(){
+		
+		     
+        $this->display();
+		}
+		
+	
+	public function import(){
+		
+		          
+				  $listArr=Session::get('listArr');
+		          if(!$listArr){
+					  
+					  echo "数据过期";
+					  
+					  }
+					  
+				//开始执行批量脚本
+				//print_r($listArr);
+				$su=0;
+				$er=0;
+				foreach($listArr as $k=>$v){
+					   
+					   $data['fs_id']=$v['fs_id'];
+					   $data['download_url']=$v['path'];
+					   $data['title']=$v['title'];
+					   $data['size']=$v['size'];
+					   $arr=explode('/',$v['path']);
+					   $data['category_id']=M('Category')->where('title like "%'.$arr[3].'%"')->getField('id');
+					   $data['keyword']=$data['title']."下载,中文字体".$arr[3];
+					   $data['description']=$data['keyword'];
+					   $data['content']=$data['description'];
+					   $data['create_time']=time();
+					   $rs=$this->dao->add($data);
+					   if($rs){
+						     $su=$su+1;
+						   }else{
+							   $er=$er+1;
+							   }
+					   
+					}
+					M('Category')->Where('id='.$data['category_id'])->setInc($nums,$su);
+					echo "成功".$su."条<br/>";
+					echo "失败".$er."条";  
+					  
+		
+		   }
+	
+	
 	
 	
 }

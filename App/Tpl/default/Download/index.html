@@ -31,11 +31,11 @@
  
  <li>
 <div class="f-img">
-<a href="/Download/detail/fs_id/{$vo.fs_id}"><img src="/Uploads/{$vo['attach_image']}"/></a>
+<a href="/Download/detail/fs_id/{$vo.fs_id}"><img src="<if condition="$vo['attach_image'] neq ''">/Uploads/{$vo['attach_image']}<else/>/Public/img/nopic.png</if>"/></a>
 </div>
 
 <div  class="f-title">
-<span class="down-bt fr"><a href="/Download/detail/fs_id/{$vo.fs_id}">下载</a></span><span class="s-t fl"><a href="/Download/detail/fs_id/{$vo.fs_id}">{$vo.title}</a></span>
+<a href="/Download/detail/fs_id/{$vo.fs_id}">{$vo.title}</a>
 <div class="clear"></div>
 </div>
 </li>
@@ -47,10 +47,13 @@
 </present>
 </ul>
 
-
-
+<div class="clear"></div>
+<div class="page">
+{$page}
 </div>
 <div class="clear"></div>
+</div>
+
 </div>
 
 </section>

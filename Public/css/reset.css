@@ -113,3 +113,24 @@ blockquote:before, blockquote:after,q:before, q:after {
 * other text
 * content
 */
+
+/*分页样式*/
+.page{ padding:10px 0; text-align:right; float:right;}
+.page  a, .page span {
+float: left;
+padding: 1px 4px;
+min-width: 14px;
+text-align: center;
+border-radius: 0px;
+background: #F4F4F4;
+margin-right: 3px;
+border: 1px solid #DDD;
+font-size: 12px;
+color: #333;
+}
+
+.page span.current {
+background: #333;
+color: #fff;
+border: 1px solid #000;
+}

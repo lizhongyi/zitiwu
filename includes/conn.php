@@ -1121,7 +1121,12 @@ return trim($str);
 }
 	
 	
-		
+	function get_cname($id){
+		  
+		  if(!$id) return false;
+		  $cname=M('Category')->where('id='.$id)->getField('title');
+	     return $cname;	
+		}	
 		
 		
 		
