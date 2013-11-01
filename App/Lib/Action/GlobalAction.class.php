@@ -123,7 +123,7 @@ class GlobalAction extends Action
      * @param $join 
      * @param $fields 取字段
      */
-    public function getList($conditions = '', $orders = '' , $listRows = '')
+    public function getList($conditions = '', $orders = '' , $listRows = '',$lang='')
     {
         $condition = !empty($conditions) ? $conditions : '' ;
         $pageCount = $this->dao->where($condition)->count();

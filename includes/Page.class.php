@@ -46,13 +46,13 @@ class Page {
     public function __construct($totalRows,$listRows='',$parameter='') {
         $this->totalRows = $totalRows;
         $this->parameter = $parameter;
-        $this->varPage = C('VAR_PAGE') ? C('VAR_PAGE') : 'p' ;
+       // $this->varPage = C('VAR_PAGE') ? C('VAR_PAGE') : 'p' ;
         if(!empty($listRows)) {
             $this->listRows = intval($listRows);
         }
         $this->totalPages = ceil($this->totalRows/$this->listRows);     //总页数
         $this->coolPages  = ceil($this->totalPages/$this->rollPage);
-        $this->nowPage  = !empty($_GET[$this->varPage])?intval($_GET[$this->varPage]):1;
+        $this->nowPage  = !empty($_GET['p'])?intval($_GET['p']):1;
         if(!empty($this->totalPages) && $this->nowPage>$this->totalPages) {
             $this->nowPage = $this->totalPages;
         }
