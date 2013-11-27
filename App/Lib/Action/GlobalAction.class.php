@@ -61,6 +61,11 @@ class GlobalAction extends Action
 		 $this->assign('userid', $this->userID);
 		 $this->assign('roleID',$this->roleID);
 		  }
+		  
+		  $this->adminID=Session::get('adminId');
+		  $this->assign('adminID',$this->adminID);
+		  
+		  
         //检测是否停止
 		
 		$this->login_url =U('User/login',array('jumpUri'=>safe_b64encode($_SERVER['REQUEST_URI'])));
@@ -81,7 +86,9 @@ class GlobalAction extends Action
 					 $listStr.="</dl>";
 				     $listStr.="<dl><dt><a href='/Download/index/cate/".$v['biaozhi']."'>".$v['title']."</a></dt>";	
 					}else{
-						 $listStr.="<dd><a href='/Download/index/cate/".$v['biaozhi']."'>".$v['title']."<span class='num'>(".$v['nums'].")</span></a></dd>";
+						
+						 $nums=M('Download')->where('category_id='.$v['id'])->count();
+						 $listStr.="<dd><a href='/Download/index/cate/".$v['biaozhi']."'>".$v['title']."<span class='num'>(".$nums.")</span></a></dd>";
 						}
 			       
 				   

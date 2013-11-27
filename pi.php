@@ -1,26 +1,28 @@
 <?php
+ session_start();
  
  header('Content-type:text/html;charset=utf-8');
- session_start();
-  
- $im=$_SESSION['ima'];
+  if($_SESSION['im']){
+ $im=$_SESSION['im'];
+  }
  if(!$im){
- $content=curl('http://www.zitiwu.com');
- $pattern="/<img(.*)src=\"([^\"]+)\"[^>]+>/isU"; 
+ $content=curl('http://ziti.jz123.cn/class/yingwenziti/jingzhizitiku/huoshuiziti/');
+ $pattern="/<img(.*)src=\"upload_img\/font\/([^\"]+)\"[^>]+>/isU"; 
+ $weizhi="/(?<=<div\sclass=\"f-list\">)(.*?)(?=<div\sclass=\"r)/is";
  $str=$content; 
  $str=str_replace('\"','"',$content);
  preg_match_all($pattern,$str,$match); 
- $imgurl=($match[2]);
- $_SESSION['ima']=$imgurl;
+ $im=$match[2];
+ $_SESSION['im']=$im;
  }
- 
+
 
 
 
            $counts=count($im);
 		   
            $page="";
-           $Page_size=2;
+           $Page_size=10;
            $Page_count = ceil($counts/$Page_size); 
            $init=1; 
            $page_len=12; 
@@ -42,33 +44,35 @@
 				   $im1[$offset+$i]=$im[$offset+$i];
 				   
 				 }
+			 foreach($im1 as $k=>$v){
+				   
+				   downImg($v);
+				 
+				 }
 			  print_r($im1);
-			  
 			 echo pageBar($counts,$Page_size,$page_len,1);
 			 
 			 
 
  function curl($url){
 			 
-			     if(function_exists('curl_init')) {
-    
+			     
 	             $ch = curl_init();
                  $timeout = 1;
                  curl_setopt ($ch, CURLOPT_URL,$url);
                  curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
                  curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-                 $info = curl_exec($ch);
+				 //curl_setopt($ch, CURLOPT_HEADER, 1); 
+				
+				 $info = curl_exec($ch);
+
+				 
                  curl_close($ch);
-                 }else{
-                  $info= file_get_contents($url);	
-	            }
+                
 			   return $info;
 			 }
 			 
 			 
-			 
-
-	 
 	 
 	 
 	 
@@ -132,5 +136,30 @@
 		      
 			  return $pagestr;
 		 }	 
+
+
+function downImg($url){
+	     $timeout=600;
+	     $doman='http://www.zitiwu.com';
+		 $url=$doman.$url;
+		 $filestr=curl($url);
+		 $img="/<img(.*)src=\"([^\"]+)\"[^>]+>/isU";
+		 $ur=preg_match_all($img,$filestr,$match);
+		 $ur=$match[2][0];
+		 $filestr=curl($ur);
+		  $dir='./test/';
+          $attach_ext = strtolower(substr(strrchr($url,'.'),1));  
+          $filename= $dir.md5(rand(0,100000000)).".".$attach_ext;
+		   file_put_contents($filename,$filestr);
+           
+	      echo $filename;
+		 
+	}
+	
+	
+
+
+
+
 
 ?>

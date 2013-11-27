@@ -21,7 +21,7 @@
 <div class="content">
 <h1>{$detail['title']}</h1>
 <div class="c-img">
-<img src="<if condition="$detail['attach_image'] neq ''">/Uploads/{$detail['attach_image']}<else/>/Public/img/nopic.png</if>"/>
+<img src="{:get_suolue($detail['title'],$detail['attach_image'])}"/>
 </div>
 <div class="info" style="padding:10px;">{$detail['description']}</div>
 

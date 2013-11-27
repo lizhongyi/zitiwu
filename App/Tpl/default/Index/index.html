@@ -27,11 +27,11 @@
  
  <li>
 <div class="f-img">
-<a href="/Download/detail/id/{$vo.id}"><img src="<if condition="$vo['attach_image'] neq ''">/Uploads/{$vo['attach_image']}<else/>/Public/img/nopic.png</if>"/></a>
+<a href="/Download/detail/id/{$vo.id}"><img src="{:get_suolue($vo['title'],$vo['attach_image'])}"/></a>
 </div>
 
 <div  class="f-title">
-<span class=""><a href="/Download/detail/id/{$vo.id}">{$vo.title}</a></span>
+<span class=""><a href="/Download/detail/id/{$vo.id}">{$vo.title}</a><if condition="$adminID neq ''"><br/><a href="/admin.php/Download/modify/id/{$vo['id']}">编辑</a></if></span>
 <div class="clear"></div>
 </div>
 </li>
@@ -43,11 +43,14 @@
 </present>
 </ul>
 
-
+<div class="page">
+{$page}
+</div>
 </div>
 
 </div>
 <div class="clear"></div>
+
 </div>
 
 </section>

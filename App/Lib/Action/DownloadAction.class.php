@@ -261,5 +261,36 @@ $result = $pcs->search($path, $wd, $re);
 			     
 			}
 		
+		
+		
+		
+		
+		//抓图
+		
+		public function zhuatu(){
+			  
+			   $title=$_GET['title'];
+			   $url=$_GET['url'];
+			   $data['title']=$title;
+			   $data['url']=$url;
+			   $data['create_time']=time();
+			   $rs=D('Zhuatu')->add($data);
+			   echo $title;
+			   echo  D('Zhuatu')->getLastSql();
+				   
+			}
+		
+		
+		public function test(){
+			
+			
+			$sd= M('Zhuatu')->limit('1')->select();
+			
+			echo base64_decode($sd[0]['url']);
+			 
+			
+			
+			}
+		
 
 }

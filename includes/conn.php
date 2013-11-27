@@ -1150,5 +1150,33 @@ return trim($str);
 			 
 			 }
 	
+	
+	
+	function get_suolue($title,$img){
+		            
+					if(!$title) return false;
+					
+					if($img !=""){
+						return "/Uploads/".$img;
+						}
+					
+                 if($img==""){
+				    
+					$img=M('Zhuatu')->where('title like "%'.$title.'%"')->getField('url');
+					if($img !=""){
+						 $img="/fontImg/".base64_decode($img);
+						}
+				     
+				 }
+				 
+				 if($img==""){
+					 
+					 $img="/Public/img/nopic.png";
+					  
+					 }	
+					 
+			   	return $img;	 	
+		   
+		  }
 		
 ?>

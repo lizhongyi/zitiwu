@@ -30,15 +30,28 @@ class IndexAction extends GlobalAction
 		  //一级分类列表
 		  
 		
+          
+        $count = M('Download')->count();
+		
+        $listRows = empty($listRows) ? 40 : $listRows;
 
-        $dataList = M('Download')->Field('fs_id,title,attach_image,id')->order('recommend,display_order,id desc')->limit(40)->select();
+        $p = new page($count, $listRows);
 
+
+        $dataList = M('Download')->Field('fs_id,title,attach_image,id')->order('recommend,display_order,id desc')->limit($p->firstRow.','.$p->listRows)->select();
+       
+	   
+	      $page = $p->show();
         if($dataList !== false)
 
         {
 
-           
-
+          
+			
+			
+			
+			
+            $this->assign('page', $page);
             $this->assign('dataList', $dataList);
 
         }

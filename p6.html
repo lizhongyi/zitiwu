@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>抓取</title>
+<script src="Public/js/jquery.js">
+</script>
+
+<script>
+
+
+function zhua($id){
+	
+	     
+		 $.ajax({
+			   url:'/p6.php?p='+$id,
+			   type:"GET",
+			   data:{},
+			   beforeSend: function(){},
+			   success:function(data){
+				      
+					  if(data<76){
+						    
+							zhua(data);
+							$("#test").html("抓取第"+data+"页面");
+						   
+						  }else{
+							  alert("完成了"+data);
+							  }
+					  
+				   }
+			 
+			 });
+	     
+	
+	}
+ 
+ zhua(1);
+ 
+ 
+</script>
+</head>
+
+<body>
+<h1>看看这玩意管用不</h1>
+<div  id="test"></div>
+</body>
+</html>

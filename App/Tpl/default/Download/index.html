@@ -31,11 +31,11 @@
  
  <li>
 <div class="f-img">
-<a href="/Download/detail/fs_id/{$vo.fs_id}"><img src="<if condition="$vo['attach_image'] neq ''">/Uploads/{$vo['attach_image']}<else/>/Public/img/nopic.png</if>"/></a>
+<a href="/Download/detail/fs_id/{$vo.fs_id}"><img src="{:get_suolue($vo['title'],$vo['attach_image'])}"/></a>
 </div>
 
 <div  class="f-title">
-<a href="/Download/detail/fs_id/{$vo.fs_id}">{$vo.title}</a>
+<a href="/Download/detail/fs_id/{$vo.fs_id}">{$vo.title}</a><if condition="$adminID neq ''"><br/><a href="/admin.php/Download/modify/id/{$vo['id']}">编辑</a></if>
 <div class="clear"></div>
 </div>
 </li>
